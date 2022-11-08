@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -12,7 +13,7 @@ import styles from "./styles/app.css"
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Telugu Badminton Club of Canterbury",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -28,6 +29,13 @@ export default function App() {
         <Links />
       </head>
       <body>
+                <nav>
+          <h1>
+            <Link to="/">
+              TBCC
+            </Link>
+          </h1>
+        </nav>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
