@@ -33,9 +33,9 @@ export default function Tournaments() {
     <ul>
       {tournaments.map((tournament: any) => (
         <li key={tournament.id}>
-              <Link to={tournament.id}>{tournament.attributes.title}</Link>
+              <Link to={tournament.attributes.slug}>{tournament.attributes.title}</Link>
+          <span className="italic"> ({tournament.attributes.location.data.attributes.name}, {tournament.attributes.location.data.attributes.address})</span>
           <div className="small">{tournament.attributes.desc}</div>
-          <div className="small">{tournament.attributes.location.data.attributes.name}</div>
         </li>
       ))}
     </ul>

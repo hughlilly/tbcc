@@ -547,8 +547,16 @@ video {
   }
 }
 
+.grid {
+  display: grid;
+}
+
 .p-20 {
   padding: 5rem;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .hover\:underline:hover {
