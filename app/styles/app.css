@@ -554,7 +554,3 @@ video {
 .hover\:underline:hover {
   text-decoration-line: underline;
 }
-
-.hover\:underline-offset-2:hover {
-  text-underline-offset: 2px;
-}
