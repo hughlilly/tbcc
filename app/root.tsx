@@ -9,16 +9,18 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import styles from "./styles/app.css"
+import styles from "./styles/app.css";
+
+export const siteTitle = "Telugu Badminton Club of Canterbury";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Telugu Badminton Club of Canterbury",
+  title: siteTitle,
   viewport: "width=device-width,initial-scale=1",
 });
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+  return [{ rel: "stylesheet", href: styles }];
 }
 
 export default function App() {
@@ -28,19 +30,34 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+
       <body>
-                <nav>
-          <h1>
-            <Link to="/">
-              TBCC
-            </Link>
-          </h1>
-        </nav>
-        <Outlet />
+        <Layout>
+          <Outlet />
+        </Layout>
+
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+
+        {/*Enable live reload in development environment only, not production */}
+        {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
       </body>
     </html>
+  );
+}
+
+export function Layout({ children }: any) {
+  return (
+    <>
+      <header>
+        <nav>
+          <div className="text-xl">
+            <Link to="/">Telugu Badminton Club of Canterbury</Link>
+          </div>
+        </nav>
+      </header>
+      {children}
+      <footer>&copy; 2022 Telugu Badminton Club of Canterbury</footer>
+    </>
   );
 }
