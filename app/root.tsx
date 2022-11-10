@@ -4,6 +4,7 @@ import {
   Links,
   LiveReload,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -49,9 +50,52 @@ export function Layout({ children }: any) {
   return (
     <>
       <header>
-        <nav>
-          <div className="text-xl">
-            <Link to="/">Telugu Badminton Club of Canterbury</Link>
+        <nav
+          id="navigation"
+          className="flex justify-between sm:p-10 px-5 py-8 font-bold"
+        >
+          {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
+          <Link
+            id="wordmark"
+            to="/"
+            className="text-lg leading-5 sm:text-xl sm:leading-5 md:text-2xl md:leading-6 lg:text-[1.75rem] lg:leading-7 w-[14ch] sm:max-md:w-[10ch]"
+          >
+            {siteTitle}
+          </Link>
+          <div
+            id="navlinks"
+            className="hidden sm:flex flex-row items-center gap-5 text-purple text-sm"
+          >
+            <NavLink
+              to="/about"
+              className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            >
+              About
+            </NavLink>
+            <NavLink
+              to="/tournaments"
+              className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            >
+              Tournaments
+            </NavLink>
+            <NavLink
+              to="/laws"
+              className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            >
+              Badminton Laws
+            </NavLink>
+            <NavLink
+              to="/training"
+              className="sm:max-md:hidden hover:underline hover:underline-offset-4 hover:decoration-2"
+            >
+              Training Materials
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            >
+              Contact
+            </NavLink>
           </div>
         </nav>
       </header>

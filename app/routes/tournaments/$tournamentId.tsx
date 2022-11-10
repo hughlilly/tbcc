@@ -1,11 +1,10 @@
 import { useLoaderData, Link } from "@remix-run/react";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 import { siteTitle } from "~/root";
-import { tournamentsSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {
-    title: `${data.attributes.title} | ${tournamentsSectionName} | ${siteTitle}`,
+    title: `${data.attributes.title} | Tournaments | ${siteTitle}`,
   };
 }
 

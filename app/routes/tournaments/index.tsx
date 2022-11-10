@@ -2,11 +2,9 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { siteTitle } from "~/root";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 
-export const tournamentsSectionName: string = "Tournaments";
-
 export function meta() {
   return {
-    title: `${tournamentsSectionName} | ${siteTitle}`,
+    title: `Tournaments | ${siteTitle}`,
   };
 }
 
