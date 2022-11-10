@@ -39,8 +39,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
 
-        {/*Enable live reload in development environment only, not production */}
-        {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
+        <LiveReload />
       </body>
     </html>
   );
