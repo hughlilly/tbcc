@@ -6,7 +6,7 @@ module.exports = {
     "eslint:recommended",
     "prettier",
   ],
-  plugins: [],
+  plugins: ["react", "import", "jsx-a11y"],
   parserOptions: {
     ecmaVersion: 2022,
     sourceType: "module",
