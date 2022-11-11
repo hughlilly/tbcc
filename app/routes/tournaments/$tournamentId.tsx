@@ -36,10 +36,11 @@ export async function loader({ params }: any) {
 
   // Did Strapi return an empty list?
   if (!data.data || data.data.length === 0) {
+    console.error(data);
     throw new Response("Not Found", { status: 404 });
   }
 
-  const tournament = data.data[0];
+  const tournament = data[0];
 
   // For a tournament with no photos, replace API returned null with an empty array
   tournament.attributes.photos.data = tournament.attributes.photos.data ?? [];
