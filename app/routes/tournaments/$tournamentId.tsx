@@ -40,7 +40,7 @@ export async function loader({ params }: any) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const tournament = data[0];
+  const tournament = data.data[0];
 
   // For a tournament with no photos, replace API returned null with an empty array
   tournament.attributes.photos.data = tournament.attributes.photos.data ?? [];
