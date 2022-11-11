@@ -30,7 +30,7 @@ export async function loader({ params }: any) {
 
   // Did Strapi return an error object in its response?
   if (data.error) {
-    console.log("Error", data.error);
+    console.error("Error", data.error);
     throw new Response("Error getting data from Strapi", { status: 500 });
   }
 
