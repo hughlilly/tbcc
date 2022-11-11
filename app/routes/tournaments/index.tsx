@@ -36,11 +36,6 @@ export async function loader() {
   return data.data;
 }
 
-export function ErrorBoundary({ error }: any) {
-  console.error(error);
-  return <span>{JSON.stringify(error)}</span>;
-}
-
 export default function Tournaments() {
   const tournaments = useLoaderData();
 
