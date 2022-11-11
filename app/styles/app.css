@@ -551,10 +551,6 @@ video {
   position: fixed;
 }
 
-.sticky {
-  position: sticky;
-}
-
 .bottom-0 {
   bottom: 0px;
 }
@@ -583,10 +579,6 @@ video {
   display: none;
 }
 
-.min-h-\[342px\] {
-  min-height: 342px;
-}
-
 .min-h-\[200px\] {
   min-height: 200px;
 }
@@ -595,20 +587,12 @@ video {
   width: 14ch;
 }
 
-.w-\[10ch\] {
-  width: 10ch;
-}
-
 .w-full {
   width: 100%;
 }
 
-.flex-auto {
-  flex: 1 1 auto;
-}
-
-.flex-grow {
-  flex-grow: 1;
+.w-\[10ch\] {
+  width: 10ch;
 }
 
 .cursor-default {
@@ -623,14 +607,6 @@ video {
   flex-direction: column;
 }
 
-.content-between {
-  align-content: space-between;
-}
-
-.items-end {
-  align-items: flex-end;
-}
-
 .items-center {
   align-items: center;
 }
@@ -639,29 +615,8 @@ video {
   justify-content: space-between;
 }
 
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
 .gap-5 {
   gap: 1.25rem;
-}
-
-.gap-10 {
-  gap: 2.5rem;
-}
-
-.gap-x-10 {
-  -moz-column-gap: 2.5rem;
-       column-gap: 2.5rem;
-}
-
-.gap-y-5 {
-  row-gap: 1.25rem;
-}
-
-.gap-y-16 {
-  row-gap: 4rem;
 }
 
 .gap-y-12 {
@@ -699,10 +654,6 @@ video {
   padding-bottom: 2rem;
 }
 
-.text-left {
-  text-align: left;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -718,25 +669,8 @@ video {
   line-height: 1.75rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.text-\[1\.15rem\] {
-  font-size: 1.15rem;
-}
-
 .font-bold {
   font-weight: 700;
-}
-
-.font-\[600\] {
-  font-weight: 600;
-}
-
-.font-\[400\] {
-  font-weight: 400;
 }
 
 .font-\[500\] {
@@ -749,10 +683,6 @@ video {
 
 .leading-5 {
   line-height: 1.25rem;
-}
-
-.leading-6 {
-  line-height: 1.5rem;
 }
 
 .text-purple {
@@ -793,10 +723,6 @@ video {
 }
 
 @media (min-width: 429px) {
-  .sm\:block {
-    display: block;
-  }
-
   .sm\:flex {
     display: flex;
   }
@@ -817,15 +743,6 @@ video {
     row-gap: 0px;
   }
 
-  .sm\:gap-y-5 {
-    row-gap: 1.25rem;
-  }
-
-  .sm\:gap-x-12 {
-    -moz-column-gap: 3rem;
-         column-gap: 3rem;
-  }
-
   .sm\:gap-x-10 {
     -moz-column-gap: 2.5rem;
          column-gap: 2.5rem;
@@ -844,25 +761,12 @@ video {
     line-height: 1.75rem;
   }
 
-  .sm\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .sm\:text-\[1\.33rem\] {
-    font-size: 1.33rem;
-  }
-
   .sm\:text-\[1\.15rem\] {
     font-size: 1.15rem;
   }
 
   .sm\:leading-5 {
     line-height: 1.25rem;
-  }
-
-  .sm\:leading-6 {
-    line-height: 1.5rem;
   }
 
   @media not all and (min-width: 833px) {
@@ -877,80 +781,9 @@ video {
 }
 
 @media (min-width: 833px) {
-  .md\:max-h-\[212px\] {
-    max-height: 212px;
-  }
-
-  .md\:min-h-\[212px\] {
-    min-height: 212px;
-  }
-
-  .md\:flex-row {
-    flex-direction: row;
-  }
-
-  .md\:gap-x-10 {
-    -moz-column-gap: 2.5rem;
-         column-gap: 2.5rem;
-  }
-
-  .md\:gap-y-0 {
-    row-gap: 0px;
-  }
-
-  .md\:px-44 {
-    padding-left: 11rem;
-    padding-right: 11rem;
-  }
-
-  .md\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
-  .md\:py-80 {
-    padding-top: 20rem;
-    padding-bottom: 20rem;
-  }
-
-  .md\:px-48 {
-    padding-left: 12rem;
-    padding-right: 12rem;
-  }
-
-  .md\:px-52 {
-    padding-left: 13rem;
-    padding-right: 13rem;
-  }
-
-  .md\:px-64 {
-    padding-left: 16rem;
-    padding-right: 16rem;
-  }
-
-  .md\:px-80 {
-    padding-left: 20rem;
-    padding-right: 20rem;
-  }
-
-  .md\:py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  .md\:px-60 {
-    padding-left: 15rem;
-    padding-right: 15rem;
-  }
-
-  .md\:px-72 {
-    padding-left: 18rem;
-    padding-right: 18rem;
-  }
-
-  .md\:py-40 {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+  .md\:px-40 {
+    padding-left: 10rem;
+    padding-right: 10rem;
   }
 
   .md\:py-10 {
@@ -958,28 +791,9 @@ video {
     padding-bottom: 2.5rem;
   }
 
-  .md\:px-40 {
-    padding-left: 10rem;
-    padding-right: 10rem;
-  }
-
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-  }
-
-  .md\:text-\[1\.33rem\] {
-    font-size: 1.33rem;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
-  .md\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
   }
 
   .md\:leading-6 {
@@ -988,14 +802,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:max-h-\[280px\] {
-    max-height: 280px;
-  }
-
-  .lg\:min-h-\[280px\] {
-    min-height: 280px;
-  }
-
   .lg\:px-80 {
     padding-left: 20rem;
     padding-right: 20rem;

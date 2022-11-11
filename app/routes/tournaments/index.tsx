@@ -1,4 +1,4 @@
-import { Link, Links, Meta, Scripts, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { siteTitle } from "~/root";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 
@@ -38,19 +38,7 @@ export async function loader() {
 
 export function ErrorBoundary({ error }: any) {
   console.error(error);
-  return (
-    <html>
-      <head>
-        <title>Oh no!</title>
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        {/* add the UI you want your users to see */}
-        <Scripts />
-      </body>
-    </html>
-  );
+  return <span>{JSON.stringify(error)}</span>;
 }
 
 export default function Tournaments() {
