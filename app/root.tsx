@@ -129,59 +129,61 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="flex flex-col sm:flex-row w-screen items-center sm:justify-evenly p-10 md:px-40 lg:px-80 md:py-10 lg:py-20 bg-purple">
+    <footer className="flex flex-col sm:flex-row w-screen p-8 pr-20 sm:p-10 md:px-40 lg:px-80 md:py-10 lg:py-20 bg-purple">
       <nav
         id="footer-navigation"
-        className="flex flex-row flex-wrap justify-start w-full gap-y-5 text-white"
+        className="flex flex-col sm:flex-row flex-wrap justify-between sm:justify-around w-full gap-y-7 text-white"
       >
-        <div
-          id="wordmark"
-          className="text-footerWordmark text-sm leading-4 sm:text-[1.15rem] sm:leading-5 font-bold cursor-default w-[10ch] flex basis-1/3 sm:basis-auto sm:block items-center justify-between"
-        >
-          {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
-          {siteTitle}
-        </div>
-        <div
-          id="footer-icon-mobile"
-          className="basis-2/3 sm:hidden self-center"
-        >
-          <img
-            src={"icons/badminton.png"}
-            height={"40px"}
-            width={"40px"}
-            alt={"Badminton icon"}
-          />
+        <div id="footer-wordmark-icon" className="flex justify-between">
+          <div
+            id="wordmark"
+            className="text-footerWordmark text-sm leading-[0.95rem] sm:text-[1.15rem] sm:leading-5 font-bold cursor-default w-[10ch] items-center"
+          >
+            {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
+            {siteTitle}
+          </div>
+          <div id="footer-icon-mobile" className="sm:hidden self-center">
+            <img
+              src={"icons/badminton.png"}
+              height={"40px"}
+              width={"40px"}
+              alt={"Badminton icon"}
+              className=""
+            />
+          </div>
         </div>
 
-        <div
-          id="footer-navlinks-main"
-          className="flex flex-col basis-auto gap-y-1 sm:self-end text-sitemapLink text-xs font-[500]"
-        >
-          <NavLink className="hover:text-white" to="/about">
-            About
-          </NavLink>
-          <NavLink className="hover:text-white" to="/tournaments">
-            Tournaments
-          </NavLink>
-          <NavLink className="hover:text-white" to="/laws">
-            Badminton Laws
-          </NavLink>
-          <NavLink className="hover:text-white" to="/training">
-            Training Materials
-          </NavLink>
+        <div id="navlinks" className="flex justify-between self-end sm:gap-x-10">
+          <div
+            id="footer-navlinks-main"
+            className="flex flex-col gap-y-1 text-sitemapLink text-xs font-[500]"
+          >
+            <NavLink className="hover:text-white" to="/about">
+              About
+            </NavLink>
+            <NavLink className="hover:text-white" to="/tournaments">
+              Tournaments
+            </NavLink>
+            <NavLink className="hover:text-white" to="/laws">
+              Badminton Laws
+            </NavLink>
+            <NavLink className="hover:text-white" to="/training">
+              Training Materials
+            </NavLink>
+          </div>
+          <div
+            id="footer-navlinks-extra"
+            className="flex flex-col gap-y-[0.15rem] sm:gap-y-1 self-end text-sitemapLink text-xs font-[500]"
+          >
+            <NavLink className="hover:text-white" to="/contact">
+              Contact
+            </NavLink>
+            <NavLink className="hover:text-white" to="/privacy-policy">
+              Privacy Policy
+            </NavLink>
+          </div>
         </div>
-        <div
-          id="footer-navlinks-extra"
-          className="flex flex-col gap-y-1 self-end text-sitemapLink text-xs font-[500]"
-        >
-          <NavLink className="hover:text-white" to="/contact">
-            Contact
-          </NavLink>
-          <NavLink className="hover:text-white" to="/privacy-policy">
-            Privacy Policy
-          </NavLink>
-        </div>
-        <div id="footer-icon-desktop" className="hidden sm:grid self-center">
+        <div id="footer-icon-desktop" className="hidden sm:grid self-end">
           <img
             src={"icons/badminton.png"}
             height={"40px"}
