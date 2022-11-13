@@ -207,11 +207,11 @@ function Footer() {
 
 export function Layout({ children }: any) {
   return (
-    <div className="flex min-h-screen w-screen grow flex-col">
+    <main className="flex min-h-screen w-screen grow flex-col">
       <Header />
       <div className="flex grow container mx-auto">{children}</div>
       <Footer />
-    </div>
+    </main>
   );
 }
 
