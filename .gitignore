@@ -6,4 +6,4 @@ node_modules
 .env
 
 # Ignore built Tailwind classes
-app/styles/app.css
+app/styles/tailwind.css

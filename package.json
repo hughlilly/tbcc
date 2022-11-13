@@ -8,8 +8,8 @@
     "lint": "eslint \"app/**/*.{js,jsx,ts,tsx}\" --quiet",
     "lint-fix-dry-run": "eslint \"app/**/*.{js,jsx,ts,tsx}\" --fix-dry-run",
     "lint-fix": "eslint \"app/**/*.{js,jsx,ts,tsx}\" --fix",
-    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
-    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css"
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/tailwind.css",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/tailwind.css"
   },
   "dependencies": {
     "@remix-run/node": "^1.7.5",
