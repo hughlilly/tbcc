@@ -3,10 +3,11 @@ module.exports = {
   extends: [
     "@remix-run/eslint-config",
     "@remix-run/eslint-config/node",
-    "eslint:recommended",
     "prettier",
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended",
   ],
-  plugins: ["react", "import", "jsx-a11y"],
+  plugins: ["jsx-a11y"],
   parserOptions: {
     ecmaVersion: 2022,
     sourceType: "module",
