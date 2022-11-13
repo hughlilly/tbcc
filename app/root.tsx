@@ -11,7 +11,7 @@ import {
   useCatch,
 } from "@remix-run/react";
 
-import styles from "./styles/app.css";
+import styles from "./styles/tailwind.css";
 
 export const siteTitle = "Telugu Badminton Club of Canterbury";
 
@@ -30,8 +30,12 @@ export function ErrorBoundary({ error }: any) {
   return (
     <Document>
       <Layout>
-        <h1>Error</h1>
-        <p>{error.message}</p>
+        <div className="font-bold">
+          <h1>Error</h1>
+        </div>
+        <div className="font-mono">
+          <p>{error.message}</p>
+        </div>
       </Layout>
     </Document>
   );
@@ -40,31 +44,33 @@ export function ErrorBoundary({ error }: any) {
 // See https://remix.run/docs/en/v1/guides/not-found#root-catch-boundary
 export function CatchBoundary() {
   const caught = useCatch();
+  const timestamp = new Date().toUTCString();
   return (
     <Document>
       <Layout>
         <div
           id="error-msg"
-          className="flex flex-col justify-between flex-wrap md:px-60"
+          className="flex flex-col justify-between min-h-[20rem] flex-wrap m-auto"
         >
           <div
             id="error-apology"
-            className="flex-auto flex flex-col gap-y-5 leading-5 text-md font-bold text-center max-w-prose"
+            className="flex flex-col gap-y-5 leading-5 text-md font-bold text-center"
           >
-            <p>
+            <p className="max-w-[20rem]">
               We're sorry. The content you were looking for has been removed or
               is otherwise no longer available.
             </p>
-            <p>
+            <p className="max-w-[20rem]">
               Try using the navigation menu above, or{" "}
               <Link to="/contact">contact us</Link> for help.
             </p>
           </div>
           <div
             id="technical-data"
-            className="self-end text-[0.65rem] text-[#595959] font-mono uppercase"
+            className="self-end text-right text-[0.65rem] text-[#595959] font-mono uppercase"
           >
-            error {caught.status}: {caught.statusText}
+            error {caught.status}: {caught.statusText} <br />
+            {timestamp}
           </div>
         </div>
       </Layout>
@@ -129,12 +135,12 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="flex flex-col sm:flex-row w-screen p-8 pr-20 sm:p-10 md:px-40 lg:px-80 md:py-10 lg:py-20 bg-purple">
+    <footer className="flex flex-col sm:flex-row w-screen py-10 px-10 sm:px-20 md:px-40 lg:px-80 bg-purple">
       <nav
         id="footer-navigation"
-        className="flex flex-col sm:flex-row flex-wrap justify-between sm:justify-around w-full gap-y-7 text-white"
+        className="flex flex-col sm:flex-row flex-wrap justify-between w-full gap-y-7 text-white"
       >
-        <div id="footer-wordmark-icon" className="flex justify-between">
+        <div id="footer-wordmark-icon" className="flex md:justify-between">
           <div
             id="wordmark"
             className="text-footerWordmark text-sm leading-[0.95rem] sm:text-[1.15rem] sm:leading-5 font-bold cursor-default w-[10ch] items-center"
@@ -153,7 +159,10 @@ function Footer() {
           </div>
         </div>
 
-        <div id="navlinks" className="flex justify-between self-end sm:gap-x-10">
+        <div
+          id="navlinks"
+          className="flex justify-between self-end sm:gap-x-10"
+        >
           <div
             id="footer-navlinks-main"
             className="flex flex-col gap-y-1 text-sitemapLink text-xs font-[500]"
@@ -200,7 +209,7 @@ export function Layout({ children }: any) {
   return (
     <div className="flex min-h-screen w-screen grow flex-col">
       <Header />
-      <div className="flex h-auto grow container mx-auto">{children}</div>
+      <div className="flex grow container mx-auto">{children}</div>
       <Footer />
     </div>
   );
@@ -215,9 +224,9 @@ export function Document({ children }: any) {
       </head>
       <body>
         {children}
+
         <ScrollRestoration />
         <Scripts />
-
         <LiveReload />
       </body>
     </html>
