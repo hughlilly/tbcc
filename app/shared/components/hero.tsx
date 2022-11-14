@@ -1,14 +1,11 @@
-import { Cloudinary } from "@cloudinary/url-gen";
-// Import the responsive plugin
-import { AdvancedImage, responsive } from "@cloudinary/react";
+import { siteTitle } from "~/root";
 
 export default function Hero() {
-  const cld = new Cloudinary({ cloud: { cloudName: "demo" } });
-  // Use the image with public ID, 'sample'.
-  const homeHero = cld.image("sample");
-
-  // Use the responsive plugin, setting the step size to 200 pixels
   return (
-    <AdvancedImage cldImg={homeHero} plugins={[responsive({ steps: 200 })]} />
+    <div className="relative bg-[url('~/hero.jpg')] bg-no-repeat bg-cover bg-center bg-fixed">
+      <span className="absolute right-8 bottom-8 w-[14ch] text-5xl font-bold text-heroText text-right">
+        {siteTitle}
+      </span>
+    </div>
   );
 }

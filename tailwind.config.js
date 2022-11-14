@@ -7,6 +7,7 @@ module.exports = {
         purple: "#8e3996",
         sitemapLink: "#F0F0F0",
         footerWordmark: "#E1E1E1",
+        heroText: "#E1E1E1",
       },
       screens: {
         sm: "429px",

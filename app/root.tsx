@@ -89,10 +89,10 @@ export function CatchBoundary() {
 
 function Header() {
   return (
-    <header className="flex w-full">
+    <header className="flex w-full h-32">
       <nav
         id="main-navigation"
-        className="flex flex-row w-full justify-between px-3 md:px-32 py-3 md:py-10 font-bold"
+        className="flex flex-row w-full justify-between p-5 md:px-16 lg:px-24 font-bold items-center "
       >
         {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
         <Link
@@ -104,7 +104,7 @@ function Header() {
         </Link>
         <div
           id="main-navlinks"
-          className="hidden sm:flex flex-row justify-between items-center gap-x-5 text-purple text-sm"
+          className="hidden sm:flex flex-row justify-between gap-x-5 text-purple text-sm"
         >
           <NavLink
             to="/about"
