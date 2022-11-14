@@ -1,4 +1,4 @@
-import Hero from "~/shared/components/hero";
+import Hero from '~/shared/components/hero';
 
 export default function Index() {
   return (

@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from '@remix-run/node';
 import {
   Link,
   Links,
@@ -9,21 +9,21 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from "@remix-run/react";
-import { useEffect } from "react";
+} from '@remix-run/react';
+import { useEffect } from 'react';
 
-import styles from "./styles/tailwind.css";
+import styles from './styles/tailwind.css';
 
-export const siteTitle = "Telugu Badminton Club of Canterbury";
+export const siteTitle = 'Telugu Badminton Club of Canterbury';
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
+  charset: 'utf-8',
   title: siteTitle,
-  viewport: "width=device-width,initial-scale=1",
+  viewport: 'width=device-width,initial-scale=1',
 });
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: 'stylesheet', href: styles }];
 }
 
 export function ErrorBoundary({ error }: any) {
@@ -36,10 +36,10 @@ export function ErrorBoundary({ error }: any) {
         <div
           role="alert"
           id="error-message"
-          className="flex flex-col container justify-between py-32 min-h-[22rem]"
+          className="container flex min-h-[22rem] flex-col justify-between py-32"
         >
-          <h1 className="font-bold text-center">Error</h1>
-          <p className="font-mono text-xs mx-auto">{error.message}</p>
+          <h1 className="text-center font-bold">Error</h1>
+          <p className="mx-auto font-mono text-xs">{error.message}</p>
         </div>
       </Layout>
     </Document>
@@ -59,24 +59,24 @@ export function CatchBoundary() {
       <Layout>
         <div
           id="error-msg"
-          className="flex flex-col justify-between min-h-[20rem] m-auto"
+          className="m-auto flex min-h-[20rem] flex-col justify-between"
         >
           <div
             id="error-apology"
-            className="flex flex-col gap-y-5 leading-5 text-md font-bold text-center"
+            className="flex flex-col gap-y-5 text-center font-bold leading-5"
           >
             <p className="max-w-[20rem]">
-              We're sorry. The content you were looking for has been removed or
-              is otherwise no longer available.
+              We're sorry. The content you were looking for has been removed or is
+              otherwise no longer available.
             </p>
             <p className="max-w-[20rem]">
-              Try using the navigation menu above, or{" "}
+              Try using the navigation menu above, or{' '}
               <Link to="/contact">contact us</Link> for help.
             </p>
           </div>
           <div
             id="technical-data"
-            className="self-end text-right text-[0.65rem] text-[#595959] font-mono uppercase"
+            className="self-end text-right font-mono text-[0.65rem] uppercase text-[#595959]"
           >
             error {caught.status}: {caught.statusText} <br />
             {new Date().toUTCString()}
@@ -89,50 +89,50 @@ export function CatchBoundary() {
 
 function Header() {
   return (
-    <header className="flex w-full h-32">
+    <header className="flex h-32 w-full">
       <nav
         id="main-navigation"
-        className="flex flex-row w-full justify-between p-5 md:px-16 lg:px-24 font-bold items-center "
+        className="flex w-full flex-row items-center justify-between p-5 font-bold md:px-16 lg:px-24 "
       >
         {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
         <Link
           id="wordmark"
           to="/"
-          className="text-sm leading-4 sm:text-lg sm:leading-5  w-[14ch] sm:max-md:w-[10ch]"
+          className="w-[14ch] text-sm leading-4 sm:text-lg  sm:leading-5 sm:max-md:w-[10ch]"
         >
           {siteTitle}
         </Link>
         <div
           id="main-navlinks"
-          className="hidden sm:flex flex-row justify-between gap-x-5 text-purple text-sm"
+          className="hidden flex-row justify-between gap-x-5 text-sm text-purple sm:flex"
         >
           <NavLink
             to="/about"
-            className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            className="hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             About
           </NavLink>
           <NavLink
             to="/tournaments"
-            className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            className="hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Tournaments
           </NavLink>
           <NavLink
             to="/laws"
-            className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            className="hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Badminton Laws
           </NavLink>
           <NavLink
             to="/training"
-            className="sm:max-md:hidden hover:underline hover:underline-offset-4 hover:decoration-2"
+            className="hover:underline hover:decoration-2 hover:underline-offset-4 sm:max-md:hidden"
           >
             Training Materials
           </NavLink>
           <NavLink
             to="/contact"
-            className="hover:underline hover:underline-offset-4 hover:decoration-2"
+            className="hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Contact
           </NavLink>
@@ -144,37 +144,34 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="flex flex-col sm:flex-row w-screen py-10 px-10 sm:px-20 md:px-40 lg:px-80 bg-purple">
+    <footer className="flex w-screen flex-col bg-purple py-10 px-10 sm:flex-row sm:px-20 md:px-40 lg:px-80">
       <nav
         id="footer-navigation"
-        className="flex flex-col sm:flex-row sm:flex-wrap justify-between w-full gap-y-7 text-white"
+        className="flex w-full flex-col justify-between gap-y-7 text-white sm:flex-row sm:flex-wrap"
       >
         <div id="footer-wordmark-icon" className="flex justify-between">
           <div
             id="wordmark"
-            className="text-footerWordmark text-sm leading-[0.95rem] sm:text-[1.15rem] sm:leading-5 font-bold cursor-default w-[10ch] items-center"
+            className="w-[10ch] cursor-default items-center text-sm font-bold leading-[0.95rem] text-footerWordmark sm:text-[1.15rem] sm:leading-5"
           >
             {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
             {siteTitle}
           </div>
-          <div id="footer-icon-mobile" className="sm:hidden self-center">
+          <div id="footer-icon-mobile" className="self-center sm:hidden">
             <img
-              src={"icons/badminton.png"}
-              height={"40px"}
-              width={"40px"}
-              alt={"Badminton icon"}
+              src={'icons/badminton.png'}
+              height={'40px'}
+              width={'40px'}
+              alt={'Badminton icon'}
               className=""
             />
           </div>
         </div>
 
-        <div
-          id="navlinks"
-          className="flex justify-between sm:self-end gap-x-10"
-        >
+        <div id="navlinks" className="flex justify-between gap-x-10 sm:self-end">
           <div
             id="footer-navlinks-main"
-            className="flex flex-col gap-y-1 text-sitemapLink text-xs font-[500]"
+            className="flex flex-col gap-y-1 text-xs font-[500] text-sitemapLink"
           >
             <NavLink className="hover:text-white" to="/about">
               About
@@ -191,7 +188,7 @@ function Footer() {
           </div>
           <div
             id="footer-navlinks-extra"
-            className="flex flex-col gap-y-[0.15rem] sm:gap-y-1 self-end text-sitemapLink text-xs font-[500]"
+            className="flex flex-col gap-y-[0.15rem] self-end text-xs font-[500] text-sitemapLink sm:gap-y-1"
           >
             <NavLink className="hover:text-white" to="/contact">
               Contact
@@ -201,12 +198,12 @@ function Footer() {
             </NavLink>
           </div>
         </div>
-        <div id="footer-icon-desktop" className="hidden sm:block self-end">
+        <div id="footer-icon-desktop" className="hidden self-end sm:block">
           <img
-            src={"icons/badminton.png"}
-            height={"40px"}
-            width={"40px"}
-            alt={"Badminton icon"}
+            src={'icons/badminton.png'}
+            height={'40px'}
+            width={'40px'}
+            alt={'Badminton icon'}
           />
         </div>
       </nav>
@@ -218,7 +215,7 @@ export function Layout({ children }: any) {
   return (
     <div id="layout" className="flex min-h-screen w-screen grow flex-col">
       <Header />
-      <main className="flex flex-col grow">{children}</main>
+      <main className="flex grow flex-col">{children}</main>
       <Footer />
     </div>
   );
