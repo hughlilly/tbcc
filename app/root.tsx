@@ -27,13 +27,16 @@ export function links() {
 }
 
 export function ErrorBoundary({ error }: any) {
-  console.log(error);
+  useEffect(() => {
+    document.title = `Error | ${siteTitle}`;
+  }, []);
   return (
     <Document>
       <Layout>
         <div
+          role="alert"
           id="error-message"
-          className="flex flex-col justify-between py-32 min-h-[22rem]"
+          className="flex flex-col container justify-between py-32 min-h-[22rem]"
         >
           <h1 className="font-bold text-center">Error</h1>
           <p className="font-mono text-xs mx-auto">{error.message}</p>
@@ -56,7 +59,7 @@ export function CatchBoundary() {
       <Layout>
         <div
           id="error-msg"
-          className="flex flex-col justify-between min-h-[20rem] flex-wrap m-auto"
+          className="flex flex-col justify-between min-h-[20rem] m-auto"
         >
           <div
             id="error-apology"
@@ -215,7 +218,7 @@ export function Layout({ children }: any) {
   return (
     <div id="layout" className="flex min-h-screen w-screen grow flex-col">
       <Header />
-      <main className="flex flex-col grow container mx-auto">{children}</main>
+      <main className="flex flex-col grow">{children}</main>
       <Footer />
     </div>
   );
