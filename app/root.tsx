@@ -10,6 +10,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
+import { useEffect } from "react";
 
 import styles from "./styles/tailwind.css";
 
@@ -30,11 +31,12 @@ export function ErrorBoundary({ error }: any) {
   return (
     <Document>
       <Layout>
-        <div className="font-bold">
-          <h1>Error</h1>
-        </div>
-        <div className="font-mono">
-          <p>{error.message}</p>
+        <div
+          id="error-message"
+          className="flex flex-col justify-between py-32 min-h-[22rem]"
+        >
+          <h1 className="font-bold text-center">Error</h1>
+          <p className="font-mono text-xs mx-auto">{error.message}</p>
         </div>
       </Layout>
     </Document>
@@ -44,7 +46,11 @@ export function ErrorBoundary({ error }: any) {
 // See https://remix.run/docs/en/v1/guides/not-found#root-catch-boundary
 export function CatchBoundary() {
   const caught = useCatch();
-  const timestamp = new Date().toUTCString();
+  useEffect(() => {
+    document.title = `${
+      caught.status
+    } ${caught.statusText.toLocaleLowerCase()} | ${siteTitle}`;
+  }, [caught]);
   return (
     <Document>
       <Layout>
@@ -70,7 +76,7 @@ export function CatchBoundary() {
             className="self-end text-right text-[0.65rem] text-[#595959] font-mono uppercase"
           >
             error {caught.status}: {caught.statusText} <br />
-            {timestamp}
+            {new Date().toUTCString()}
           </div>
         </div>
       </Layout>
@@ -138,9 +144,9 @@ function Footer() {
     <footer className="flex flex-col sm:flex-row w-screen py-10 px-10 sm:px-20 md:px-40 lg:px-80 bg-purple">
       <nav
         id="footer-navigation"
-        className="flex flex-col sm:flex-row flex-wrap justify-between w-full gap-y-7 text-white"
+        className="flex flex-col sm:flex-row sm:flex-wrap justify-between w-full gap-y-7 text-white"
       >
-        <div id="footer-wordmark-icon" className="flex md:justify-between">
+        <div id="footer-wordmark-icon" className="flex justify-between">
           <div
             id="wordmark"
             className="text-footerWordmark text-sm leading-[0.95rem] sm:text-[1.15rem] sm:leading-5 font-bold cursor-default w-[10ch] items-center"
@@ -161,7 +167,7 @@ function Footer() {
 
         <div
           id="navlinks"
-          className="flex justify-between self-end sm:gap-x-10"
+          className="flex justify-between sm:self-end gap-x-10"
         >
           <div
             id="footer-navlinks-main"
@@ -192,7 +198,7 @@ function Footer() {
             </NavLink>
           </div>
         </div>
-        <div id="footer-icon-desktop" className="hidden sm:grid self-end">
+        <div id="footer-icon-desktop" className="hidden sm:block self-end">
           <img
             src={"icons/badminton.png"}
             height={"40px"}
@@ -207,11 +213,11 @@ function Footer() {
 
 export function Layout({ children }: any) {
   return (
-    <main className="flex min-h-screen w-screen grow flex-col">
+    <div id="layout" className="flex min-h-screen w-screen grow flex-col">
       <Header />
-      <div className="flex grow container mx-auto">{children}</div>
+      <main className="flex flex-col grow container mx-auto">{children}</main>
       <Footer />
-    </main>
+    </div>
   );
 }
 
