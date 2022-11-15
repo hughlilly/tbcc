@@ -88,11 +88,21 @@ export default function Header() {
         className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden 
           ${isNavOpen ? 'flex' : 'hidden'} `}
       >
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/tournaments">Tournaments</NavLink>
-        <NavLink to="/laws">Badminton Laws</NavLink>
-        <NavLink to="/training">Training Materials</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/about" onClick={() => setIsNavOpen((state) => !state)}>
+          About
+        </NavLink>
+        <NavLink to="/tournaments" onClick={() => setIsNavOpen((state) => !state)}>
+          Tournaments
+        </NavLink>
+        <NavLink to="/laws" onClick={() => setIsNavOpen((state) => !state)}>
+          Badminton Laws
+        </NavLink>
+        <NavLink to="/training" onClick={() => setIsNavOpen((state) => !state)}>
+          Training Materials
+        </NavLink>
+        <NavLink to="/contact" onClick={() => setIsNavOpen((state) => !state)}>
+          Contact
+        </NavLink>
       </section>
     </header>
   );
