@@ -88,24 +88,27 @@ export function CatchBoundary() {
       <Layout>
         <div
           id="error-msg"
-          className="m-auto flex min-h-[20rem] flex-col justify-between"
+          className="m-auto mt-20 mb-5 flex min-h-[20rem] flex-col justify-between sm:m-auto"
         >
           <div
             id="error-apology"
-            className="flex flex-col gap-y-5 text-center font-bold leading-5"
+            className="flex flex-col gap-y-5 p-10 text-center text-sm font-bold leading-[1.10rem] sm:px-28 md:px-48 lg:px-96"
           >
-            <p className="max-w-[20rem]">
+            <p>
               We're sorry. The content you were looking for has been removed or is
               otherwise no longer available.
             </p>
-            <p className="max-w-[20rem]">
+            <p>
               Try using the navigation menu above, or{' '}
-              <Link to="/contact">contact us</Link> for help.
+              <Link to="/contact" className="text-blue-600">
+                contact us
+              </Link>{' '}
+              for help.
             </p>
           </div>
           <div
             id="technical-data"
-            className="self-end text-right font-mono text-[0.65rem] uppercase text-[#595959]"
+            className="self-end pr-5 text-right font-mono text-[0.5rem] uppercase text-[#595959] sm:pr-8 sm:pb-5 sm:text-[0.65rem]"
           >
             error {caught.status}: {caught.statusText} <br />
             {new Date().toUTCString()}
