@@ -65,7 +65,7 @@ export function ErrorBoundary({ error }: any) {
         <div
           role="alert"
           id="error-message"
-          className="container flex min-h-[22rem] flex-col justify-between py-32"
+          className="container flex min-h-[75vh] flex-col justify-around py-24 px-5 sm:py-36"
         >
           <h1 className="text-center font-bold">Error</h1>
           <p className="mx-auto font-mono text-xs">{error.message}</p>
