@@ -3,7 +3,7 @@ import { siteTitle } from '~/root';
 
 export default function Header() {
   return (
-    <header className="flex h-32 w-full">
+    <header className="flex h-24 w-full sm:h-32">
       <nav
         id="main-navigation"
         className="flex w-full flex-row items-center justify-between p-5 font-bold md:px-16 lg:px-24 "
