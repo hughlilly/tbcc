@@ -49,19 +49,28 @@ export default function Index() {
         id="homepage-sections"
         className="flex flex-col gap-y-12 py-10 sm:gap-y-0 sm:py-0"
       >
-        {sections.map((section: any) => {
+        {sections.map((section: any, index: number) => {
           //@todo: logic for even/odd
+          const even = index % 2 == 0;
           return (
             <article
               id={`cta-${section.path}`}
               key={section.id}
-              className="flex flex-col-reverse gap-y-5 px-7 sm:flex-row sm:gap-y-0 sm:p-2"
+              className={`
+              ${even ? 'sm:flex-row' : 'sm:flex-row-reverse'} 
+              flex h-auto flex-col-reverse gap-y-8 sm:gap-y-0 sm:p-2 sm:px-7 
+              `}
             >
-              <Link to={section.path} className="flex flex-col gap-y-2 text-sm sm:w-1/2">
-                <h1 className="text-center text-2xl font-bold sm:text-left">
+              <Link
+                to={section.path}
+                className="flex flex-col gap-y-2 px-5 sm:w-1/2 sm:gap-y-7 sm:self-center"
+              >
+                <h1 className="text-center text-2xl font-bold sm:items-center sm:text-left">
                   {section.sectionName}
                 </h1>
-                <p>{section.sectionText}</p>
+                <p className="leading-5 sm:pr-10 sm:text-lg sm:leading-6">
+                  {section.sectionText}
+                </p>
               </Link>
               <img
                 src={section.image.data.attributes.formats.thumbnail.url}
