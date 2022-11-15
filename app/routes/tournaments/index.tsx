@@ -42,7 +42,6 @@ export default function Tournaments() {
         <li key={tournament.id}>
           <Link to={tournament.attributes.slug}>{tournament.attributes.title}</Link>
           <span className="italic">
-            {' '}
             ({tournament.attributes.location.data.attributes.name},{' '}
             {tournament.attributes.location.data.attributes.address})
           </span>
