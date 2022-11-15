@@ -85,8 +85,9 @@ export default function Header() {
       </div>
       <section
         id="mobile-menu"
-        className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden 
-          ${isNavOpen ? 'flex' : 'hidden'} `}
+        className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden
+        ${isNavOpen ? 'flex' : 'hidden'}
+        `}
       >
         <NavLink to="/about" onClick={() => setIsNavOpen((state) => !state)}>
           About
