@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header className="flex flex-col">
-      <div id="menu-top" className="flex h-20 w-full flex-col sm:h-32 sm:flex-row">
+      <section id="menu-top" className="flex h-20 w-full flex-col sm:h-32 sm:flex-row">
         <nav
           id="main-navigation"
           className="flex w-full items-center justify-between p-6 font-bold md:px-16 lg:px-24"
@@ -55,7 +55,7 @@ export default function Header() {
               Contact
             </NavLink>
           </section>
-          <div
+          <button
             id="hamburger-icon"
             className={`${isNavOpen ? 'hidden' : 'block'} space-y-1 pr-1 sm:hidden`}
             onClick={() => setIsNavOpen((state) => !state)}
@@ -63,8 +63,8 @@ export default function Header() {
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
-          </div>
-          <div
+          </button>
+          <button
             id="cross-icon"
             className={`${isNavOpen ? 'flex' : 'hidden'} sm:hidden`}
             onClick={() => setIsNavOpen(false)}
@@ -80,13 +80,14 @@ export default function Header() {
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
-          </div>
+          </button>
         </nav>
-      </div>
+      </section>
       <section
         id="mobile-menu"
-        className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden 
-          ${isNavOpen ? 'flex' : 'hidden'} `}
+        className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden
+        ${isNavOpen ? 'flex' : 'hidden'}
+        `}
       >
         <NavLink to="/about" onClick={() => setIsNavOpen((state) => !state)}>
           About
