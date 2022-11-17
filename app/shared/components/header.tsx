@@ -55,7 +55,7 @@ export default function Header() {
               Contact
             </NavLink>
           </section>
-          <div
+          <button
             id="hamburger-icon"
             className={`${isNavOpen ? 'hidden' : 'block'} space-y-1 pr-1 sm:hidden`}
             onClick={() => setIsNavOpen((state) => !state)}
@@ -63,8 +63,8 @@ export default function Header() {
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
-          </div>
-          <div
+          </button>
+          <button
             id="cross-icon"
             className={`${isNavOpen ? 'flex' : 'hidden'} sm:hidden`}
             onClick={() => setIsNavOpen(false)}
@@ -80,7 +80,7 @@ export default function Header() {
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
-          </div>
+          </button>
         </nav>
       </div>
       <section
