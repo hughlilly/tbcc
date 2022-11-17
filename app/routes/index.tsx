@@ -1,5 +1,4 @@
 import { Link, useLoaderData } from '@remix-run/react';
-import Cards from '~/shared/components/cards';
 import Hero from '~/shared/components/hero';
 import { checkEnvVars, checkStatus } from '~/utils/errorHandling';
 
@@ -50,12 +49,13 @@ export default function Index() {
         className="flex flex-col gap-y-12 py-10 sm:gap-y-0 sm:py-0"
       >
         {sections.map((section: any, index: number) => {
-          //@todo: logic for even/odd
+          // Determine if current section is an even or odd one
           const even = index % 2 == 0;
           return (
             <article
               id={`cta-${section.path}`}
               key={section.id}
+              // If an even section, put img container first on sm+ viewports; if odd, put last
               className={`
               ${even ? 'sm:flex-row' : 'sm:flex-row-reverse'} 
               flex h-auto flex-col-reverse gap-y-8 sm:gap-y-0 sm:p-2 sm:px-7 
