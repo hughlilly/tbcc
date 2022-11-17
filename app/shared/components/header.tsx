@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header className="flex flex-col">
-      <div id="menu-top" className="flex h-20 w-full flex-col sm:h-32 sm:flex-row">
+      <section id="menu-top" className="flex h-20 w-full flex-col sm:h-32 sm:flex-row">
         <nav
           id="main-navigation"
           className="flex w-full items-center justify-between p-6 font-bold md:px-16 lg:px-24"
@@ -82,7 +82,7 @@ export default function Header() {
             </svg>
           </button>
         </nav>
-      </div>
+      </section>
       <section
         id="mobile-menu"
         className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden
