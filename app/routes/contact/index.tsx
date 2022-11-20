@@ -57,7 +57,7 @@ export default function ContactRoute() {
               <input
                 className="block w-full appearance-none border border-gray-200 py-3 px-4"
                 id="phoneNumber"
-                type="text"
+                type="number"
                 placeholder="Phone number"
               />
             </div>
