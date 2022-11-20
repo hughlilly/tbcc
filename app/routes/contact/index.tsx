@@ -29,9 +29,10 @@ export default function ContactRoute() {
             </p>
             <div id="firstname-field">
               <label htmlFor="firstname" className="mb-1 block">
-                First name
+                First name (required)
               </label>
               <input
+                required
                 className="block w-full appearance-none border border-gray-200 py-3 px-4"
                 id="firstname"
                 type="text"
@@ -41,9 +42,10 @@ export default function ContactRoute() {
             {/* <p className="text-xs italic text-red-500">Please fill out this field.</p> */}
             <div id="lastname-field">
               <label htmlFor="lastname" className="mb-1 block">
-                Last name
+                Last name (required)
               </label>
               <input
+                required
                 className="block w-full appearance-none border border-gray-200 py-3 px-4"
                 id="lastname"
                 type="text"
