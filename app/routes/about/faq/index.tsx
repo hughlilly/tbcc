@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
@@ -41,31 +41,28 @@ export async function loader() {
 
 export default function ContactRoute() {
   const data = useLoaderData();
+  const faqs = data.attributes.faqs;
   return (
-    <div id="about-page-content">
-      <Hero text="About Us" page="about" />
+    <div id="faq-page-content">
+      <Hero text="Frequently Asked Questions" page="faq" />
       <div
         id="about-info"
-        className="flex min-h-screen flex-col gap-y-10 p-5 pb-14 sm:py-20 sm:px-32"
+        className="flex min-h-[75vh] flex-col gap-y-10 p-5 pb-14 sm:py-20 sm:px-32"
       >
         <h1
-          className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0"
-          id="about-heading"
-        >
-          {data.attributes.main.heading}
-        </h1>
-        <p
-          id="about-body-text"
-          className="whitespace-pre-wrap text-sm sm:text-base"
-        >
-          {data.attributes.main.body}
-        </p>
-        <Link
-          to="faq"
-          className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4 sm:py-5"
+          className="pt-8 text-center text-xl font-bold sm:gap-y-0 sm:py-0"
+          id="faq-heading"
         >
           Frequently Asked Questions
-        </Link>
+        </h1>
+        <ul className="mx-auto text-sm sm:text-base lg:px-32">
+          {faqs.map((faq: any) => (
+            <li key={faq.id}>
+              <p className="pb-2 font-bold">{faq.question}</p>
+              <p>{faq.answer}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
