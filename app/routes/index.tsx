@@ -40,6 +40,7 @@ export async function loader() {
         section.image.data.attributes.formats.thumbnail.url;
     }
     if (
+      section.image.data.attributes.formats.small &&
       !section.image.data.attributes.formats.small.url.startsWith(
         "http"
       )
@@ -49,6 +50,7 @@ export async function loader() {
         section.image.data.attributes.formats.small.url;
     }
     if (
+      section.image.data.attributes.formats.medium &&
       !section.image.data.attributes.formats.medium.url.startsWith(
         "http"
       )
@@ -58,6 +60,7 @@ export async function loader() {
         section.image.data.attributes.formats.medium.url;
     }
     if (
+      section.image.data.attributes.formats.large &&
       !section.image.data.attributes.formats.large.url.startsWith(
         "http"
       )
