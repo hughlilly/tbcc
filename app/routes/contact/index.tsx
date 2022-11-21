@@ -1,3 +1,11 @@
+import { siteTitle } from "~/root";
+
+export function meta() {
+  return {
+    title: `Contact Us | ${siteTitle}`,
+  };
+}
+
 export default function ContactRoute() {
   return (
     // See https://remix.run/docs/en/v1/guides/data-writes
