@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "@remix-run/react";
+import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
@@ -80,7 +81,7 @@ export default function Index() {
 
   return (
     <div id="homepage-content">
-      <Hero />
+      <Hero page="home" text={siteTitle} />
       <div
         id="homepage-sections"
         className="flex flex-col gap-y-12 py-10 sm:gap-y-0 sm:py-0"
@@ -97,7 +98,6 @@ export default function Index() {
               ${even ? "sm:flex-row" : "sm:flex-row-reverse"} 
               flex h-auto flex-col-reverse  
               `}
-              // gap-y-8 sm:gap-y-0 sm:p-2 sm:px-7
             >
               <Link
                 to={section.path}
@@ -122,7 +122,6 @@ export default function Index() {
                 role="img"
                 // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
                 aria-label={`${section.image.data.attributes.alternativeText}`}
-                // className="bg-cover bg-center bg-no-repeat"
                 className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
               />
             </article>
