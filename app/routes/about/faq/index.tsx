@@ -5,7 +5,7 @@ import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
 export function meta() {
   return {
-    title: `About Us | ${siteTitle}`,
+    title: `FAQs | ${siteTitle}`,
   };
 }
 
@@ -47,7 +47,7 @@ export default function ContactRoute() {
       <Hero text="Frequently Asked Questions" page="faq" />
       <div
         id="about-info"
-        className="flex min-h-[75vh] flex-col gap-y-10 p-5 pb-14 sm:py-20 sm:px-32"
+        className="flex min-h-[75vh] flex-col gap-y-14 p-5 pb-14 sm:py-20 sm:px-32"
       >
         <h1
           className="pt-8 text-center text-xl font-bold sm:gap-y-0 sm:py-0"
@@ -55,10 +55,10 @@ export default function ContactRoute() {
         >
           Frequently Asked Questions
         </h1>
-        <ul className="mx-auto text-sm sm:text-base lg:px-32">
+        <ul className="mx-auto flex flex-col gap-y-8 text-sm sm:text-base lg:px-32">
           {faqs.map((faq: any) => (
             <li key={faq.id}>
-              <p className="pb-2 font-bold">{faq.question}</p>
+              <p className="pb-1 font-bold">{faq.question}</p>
               <p>{faq.answer}</p>
             </li>
           ))}
