@@ -94,8 +94,12 @@ export default function ContactRoute() {
               id="newsletter-tickbox"
               className="mx-auto flex flex-row items-center gap-x-4"
             >
-              <input type="checkbox" name="subscribe" id="subscribe" />
-              <label htmlFor="Newsletter" className="">
+              <input
+                type="checkbox"
+                name="newsletter"
+                id="newsletter"
+              />
+              <label htmlFor="newsletter" className="select-none">
                 Yes, sign me up to the newsletter
               </label>
             </div>
