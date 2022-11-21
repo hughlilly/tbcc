@@ -1,6 +1,6 @@
-import { Link, useLoaderData } from '@remix-run/react';
-import Hero from '~/shared/components/hero';
-import { checkEnvVars, checkStatus } from '~/utils/errorHandling';
+import { Link, useLoaderData } from "@remix-run/react";
+import Hero from "~/shared/components/hero";
+import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
 export async function loader() {
   checkEnvVars();
@@ -8,10 +8,10 @@ export async function loader() {
   const res = await fetch(
     `${process.env.STRAPI_URL_BASE}/api/home-section?populate%5Bsection%5D%5Bpopulate%5D=*`,
     {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     }
   );
@@ -23,14 +23,48 @@ export async function loader() {
 
   // Did Strapi return an error object in its response?
   if (data.error) {
-    console.error('Error', data.error);
-    throw new Response('Error getting data from Strapi', { status: 500 });
+    console.error("Error", data.error);
+    throw new Response("Error getting data from Strapi", {
+      status: 500,
+    });
   }
 
   for (const section of data.data.attributes.section) {
-    if (!section.image.data.attributes.formats.thumbnail.url.startsWith('http')) {
+    if (
+      !section.image.data.attributes.formats.thumbnail.url.startsWith(
+        "http"
+      )
+    ) {
       section.image.data.attributes.formats.thumbnail.url =
-        process.env.STRAPI_URL_BASE + section.image.data.attributes.formats.thumbnail.url;
+        process.env.STRAPI_URL_BASE +
+        section.image.data.attributes.formats.thumbnail.url;
+    }
+    if (
+      !section.image.data.attributes.formats.small.url.startsWith(
+        "http"
+      )
+    ) {
+      section.image.data.attributes.formats.small.url =
+        process.env.STRAPI_URL_BASE +
+        section.image.data.attributes.formats.small.url;
+    }
+    if (
+      !section.image.data.attributes.formats.medium.url.startsWith(
+        "http"
+      )
+    ) {
+      section.image.data.attributes.formats.medium.url =
+        process.env.STRAPI_URL_BASE +
+        section.image.data.attributes.formats.medium.url;
+    }
+    if (
+      !section.image.data.attributes.formats.large.url.startsWith(
+        "http"
+      )
+    ) {
+      section.image.data.attributes.formats.large.url =
+        process.env.STRAPI_URL_BASE +
+        section.image.data.attributes.formats.large.url;
     }
   }
 
@@ -57,13 +91,14 @@ export default function Index() {
               key={section.id}
               // If an even section, put img container first on sm+ viewports; if odd, put last
               className={`
-              ${even ? 'sm:flex-row' : 'sm:flex-row-reverse'} 
-              flex h-auto flex-col-reverse gap-y-8 sm:gap-y-0 sm:p-2 sm:px-7 
+              ${even ? "sm:flex-row" : "sm:flex-row-reverse"} 
+              flex h-auto flex-col-reverse  
               `}
+              // gap-y-8 sm:gap-y-0 sm:p-2 sm:px-7
             >
               <Link
                 to={section.path}
-                className="flex flex-col gap-y-2 px-5 sm:w-1/2 sm:gap-y-7 sm:self-center"
+                className="flex flex-col gap-y-2 px-10 sm:w-1/2 sm:gap-y-5 sm:self-center sm:py-24"
               >
                 <h1 className="text-center text-2xl font-bold sm:items-center sm:text-left">
                   {section.sectionName}
@@ -72,10 +107,16 @@ export default function Index() {
                   {section.sectionText}
                 </p>
               </Link>
-              <img
-                src={section.image.data.attributes.formats.thumbnail.url}
-                alt={section.image.data.attributes.alternativeText}
-                className="mx-auto h-56 w-56 rounded-full sm:mx-0 sm:h-96 sm:w-96 sm:rounded-none"
+              <div
+                // See https://stackoverflow.com/a/70805360/10267529
+                style={{
+                  backgroundImage: `url(${section.image.data.attributes.formats.large.url})`,
+                }}
+                role="img"
+                // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
+                aria-label={`${section.image.data.attributes.alternativeText}`}
+                // className="bg-cover bg-center bg-no-repeat"
+                className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[45vh] sm:min-w-[50%] sm:rounded-none"
               />
             </article>
           );
