@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/node';
+import type { MetaFunction } from "@remix-run/node";
 import {
   Link,
   Links,
@@ -8,23 +8,23 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
-} from '@remix-run/react';
-import { useEffect } from 'react';
+} from "@remix-run/react";
+import { useEffect } from "react";
 
-import styles from './styles/tailwind.css';
-import Header from './shared/components/header';
-import Footer from './shared/components/footer';
+import styles from "./styles/tailwind.css";
+import Header from "./shared/components/header";
+import Footer from "./shared/components/footer";
 
-export const siteTitle = 'Telugu Badminton Club of Canterbury';
+export const siteTitle = "Telugu Badminton Club of Canterbury";
 
 export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
+  charset: "utf-8",
   title: siteTitle,
-  viewport: 'width=device-width,initial-scale=1',
+  viewport: "width=device-width,initial-scale=1",
 });
 
 export function links() {
-  return [{ rel: 'stylesheet', href: styles }];
+  return [{ rel: "stylesheet", href: styles }];
 }
 
 export function Document({ children }: any) {
@@ -47,7 +47,10 @@ export function Document({ children }: any) {
 
 export function Layout({ children }: any) {
   return (
-    <div id="layout" className="flex min-h-screen w-screen grow flex-col">
+    <div
+      id="layout"
+      className="flex min-h-screen w-screen grow flex-col"
+    >
       <Header />
       <main className="flex grow flex-col">{children}</main>
       <Footer />
@@ -95,14 +98,14 @@ export function CatchBoundary() {
             className="flex flex-col gap-y-5 p-10 text-center text-sm font-bold leading-[1.10rem] sm:px-28 md:px-48 lg:px-96"
           >
             <p>
-              We're sorry. The content you were looking for has been removed or is
-              otherwise no longer available.
+              We're sorry. The content you were looking for has been
+              removed or is otherwise no longer available.
             </p>
             <p>
-              Try using the navigation menu above, or{' '}
+              Try using the navigation menu above, or{" "}
               <Link to="/contact" className="text-blue-600">
                 contact us
-              </Link>{' '}
+              </Link>{" "}
               for help.
             </p>
           </div>

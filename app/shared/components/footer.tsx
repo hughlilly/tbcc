@@ -1,9 +1,9 @@
-import { NavLink } from '@remix-run/react';
-import { siteTitle } from '~/root';
+import { NavLink } from "@remix-run/react";
+import { siteTitle } from "~/root";
 
 export default function Footer() {
   return (
-    <footer className="flex w-screen flex-col bg-purple py-10 px-10 sm:flex-row sm:px-20 md:px-40 lg:px-80">
+    <footer className="flex w-screen flex-col bg-purple p-10 sm:flex-row sm:px-20 md:px-40 lg:px-80">
       <nav
         id="footer-navigation"
         className="flex w-full flex-col justify-between gap-y-7 text-white sm:flex-row sm:flex-wrap"
@@ -16,18 +16,24 @@ export default function Footer() {
             {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
             {siteTitle}
           </div>
-          <div id="footer-icon-mobile" className="self-center sm:hidden">
+          <div
+            id="footer-icon-mobile"
+            className="self-center sm:hidden"
+          >
             <img
-              src={'icons/badminton.png'}
-              height={'40px'}
-              width={'40px'}
-              alt={'Badminton icon'}
+              src={"badminton.png"}
+              height={"40px"}
+              width={"40px"}
+              alt={"Badminton icon"}
               className=""
             />
           </div>
         </div>
 
-        <div id="navlinks" className="flex justify-between gap-x-10 sm:self-end">
+        <div
+          id="navlinks"
+          className="flex justify-between gap-x-10 sm:self-end"
+        >
           <div
             id="footer-navlinks-main"
             className="flex flex-col gap-y-1 text-xs font-[500] text-sitemapLink"
@@ -57,12 +63,15 @@ export default function Footer() {
             </NavLink>
           </div>
         </div>
-        <div id="footer-icon-desktop" className="hidden self-end sm:block">
+        <div
+          id="footer-icon-desktop"
+          className="hidden self-end sm:block"
+        >
           <img
-            src={'icons/badminton.png'}
-            height={'40px'}
-            width={'40px'}
-            alt={'Badminton icon'}
+            src={"badminton.png"}
+            height={"40px"}
+            width={"40px"}
+            alt={"Badminton icon"}
           />
         </div>
       </nav>

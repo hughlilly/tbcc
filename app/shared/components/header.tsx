@@ -1,13 +1,16 @@
-import { Link, NavLink } from '@remix-run/react';
-import { useState } from 'react';
-import { siteTitle } from '~/root';
+import { Link, NavLink } from "@remix-run/react";
+import { useState } from "react";
+import { siteTitle } from "~/root";
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
     <header className="flex flex-col">
-      <section id="menu-top" className="flex h-20 w-full flex-col sm:h-32 sm:flex-row">
+      <section
+        id="menu-top"
+        className="flex h-20 w-full flex-col sm:h-32 sm:flex-row"
+      >
         <nav
           id="main-navigation"
           className="flex w-full items-center justify-between p-6 font-bold md:px-16 lg:px-24"
@@ -57,7 +60,9 @@ export default function Header() {
           </section>
           <button
             id="hamburger-icon"
-            className={`${isNavOpen ? 'hidden' : 'block'} space-y-1 pr-1 sm:hidden`}
+            className={`${
+              isNavOpen ? "hidden" : "block"
+            } space-y-1 pr-1 sm:hidden`}
             onClick={() => setIsNavOpen((state) => !state)}
           >
             <span className="block h-0.5 w-5 bg-neutral-800"></span>
@@ -66,7 +71,7 @@ export default function Header() {
           </button>
           <button
             id="cross-icon"
-            className={`${isNavOpen ? 'flex' : 'hidden'} sm:hidden`}
+            className={`${isNavOpen ? "flex" : "hidden"} sm:hidden`}
             onClick={() => setIsNavOpen(false)}
           >
             <svg
@@ -86,22 +91,37 @@ export default function Header() {
       <section
         id="mobile-menu"
         className={`h-[calc(100vh-5rem)] flex-col items-center justify-around border-t-[1px] border-t-neutral-300 p-10 py-20 text-sm font-bold text-purple sm:hidden
-        ${isNavOpen ? 'flex' : 'hidden'}
+        ${isNavOpen ? "flex" : "hidden"}
         `}
       >
-        <NavLink to="/about" onClick={() => setIsNavOpen((state) => !state)}>
+        <NavLink
+          to="/about"
+          onClick={() => setIsNavOpen((state) => !state)}
+        >
           About
         </NavLink>
-        <NavLink to="/tournaments" onClick={() => setIsNavOpen((state) => !state)}>
+        <NavLink
+          to="/tournaments"
+          onClick={() => setIsNavOpen((state) => !state)}
+        >
           Tournaments
         </NavLink>
-        <NavLink to="/laws" onClick={() => setIsNavOpen((state) => !state)}>
+        <NavLink
+          to="/laws"
+          onClick={() => setIsNavOpen((state) => !state)}
+        >
           Badminton Laws
         </NavLink>
-        <NavLink to="/training" onClick={() => setIsNavOpen((state) => !state)}>
+        <NavLink
+          to="/training"
+          onClick={() => setIsNavOpen((state) => !state)}
+        >
           Training Materials
         </NavLink>
-        <NavLink to="/contact" onClick={() => setIsNavOpen((state) => !state)}>
+        <NavLink
+          to="/contact"
+          onClick={() => setIsNavOpen((state) => !state)}
+        >
           Contact
         </NavLink>
       </section>
