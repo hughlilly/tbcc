@@ -37,6 +37,9 @@ export default function ContactRoute() {
                 id="firstname"
                 type="text"
                 placeholder="First name"
+                // See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
+                // and https://www.w3.org/TR/WCAG21/#input-purposes
+                autoComplete="given-name"
               />
             </div>
             {/* <p className="text-xs italic text-red-500">Please fill out this field.</p> */}
@@ -50,6 +53,7 @@ export default function ContactRoute() {
                 id="lastname"
                 type="text"
                 placeholder="Last name"
+                autoComplete="family-name"
               />
             </div>
             <div id="phone-number-field">
