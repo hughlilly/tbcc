@@ -113,7 +113,11 @@ export default function Index() {
               <div
                 // See https://stackoverflow.com/a/70805360/10267529
                 style={{
-                  backgroundImage: `url(${section.image.data.attributes.formats.large.url})`,
+                  backgroundImage: `url(${
+                    process.env.NODE_ENV === "development"
+                      ? section.image.data.attributes.formats.large.url
+                      : section.image.data.attributes.url
+                  })`,
                 }}
                 role="img"
                 // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
