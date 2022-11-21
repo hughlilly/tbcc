@@ -101,12 +101,12 @@ export default function Index() {
             >
               <Link
                 to={section.path}
-                className="flex flex-col gap-y-2 px-10 sm:w-1/2 sm:gap-y-5 sm:self-center sm:py-24"
+                className="flex flex-col gap-y-2 px-10 sm:w-1/2 sm:gap-y-5 sm:self-center sm:py-5 lg:py-24"
               >
-                <h1 className="text-center text-2xl font-bold sm:items-center sm:text-left">
+                <h1 className="text-center text-xl font-bold sm:items-center sm:text-left sm:text-2xl">
                   {section.sectionName}
                 </h1>
-                <p className="leading-5 sm:pr-10 sm:text-lg sm:leading-6">
+                <p className="text-sm sm:pr-10 lg:text-lg lg:leading-6 xl:text-xl">
                   {section.sectionText}
                 </p>
               </Link>
@@ -119,7 +119,7 @@ export default function Index() {
                 // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
                 aria-label={`${section.image.data.attributes.alternativeText}`}
                 // className="bg-cover bg-center bg-no-repeat"
-                className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[45vh] sm:min-w-[50%] sm:rounded-none"
+                className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
               />
             </article>
           );
