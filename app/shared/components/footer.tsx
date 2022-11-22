@@ -21,7 +21,7 @@ export default function Footer() {
             className="self-center sm:hidden"
           >
             <img
-              src={"badminton.png"}
+              src={"/badminton.png"}
               height={"40px"}
               width={"40px"}
               alt={"Badminton icon"}
