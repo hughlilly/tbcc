@@ -56,16 +56,10 @@ export async function loader() {
 export default function Tournaments() {
   const tournaments = useLoaderData();
 
-  // https://stackoverflow.com/a/57688223/10267529
-  const truncateString = (string = "", maxLength = 50) =>
-    string.length > maxLength
-      ? `${string.substring(0, maxLength)}`
-      : string;
-
   return (
     <div
       id="tournaments-info"
-      className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
+      className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-5 divide-y divide-solid p-2 px-5 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
     >
       {tournaments.map((tournament: any) => {
         const tournamentData = tournament.attributes;
@@ -75,7 +69,7 @@ export default function Tournaments() {
           tournament.attributes.photos.data[0].attributes;
         return (
           <div
-            className="flex flex-col gap-y-5 sm:px-20"
+            className="flex flex-col gap-y-5 pt-14 sm:px-28 sm:pt-0"
             key={tournament.id}
           >
             <Link
@@ -136,13 +130,14 @@ export default function Tournaments() {
                 </time>
               </p>
             </div>
-            <p>
-              {truncateString(tournamentData.desc, 220)}{" "}
+            <p className=" line-clamp-3 ">
+              {/* {truncateString(tournamentData.desc, 220)}{" "} */}
+              {tournamentData.desc}{" "}
               <Link
                 to={tournamentData.slug}
                 className="font-bold hover:underline"
               >
-                Read more…
+                Read more »
               </Link>
             </p>
           </div>
