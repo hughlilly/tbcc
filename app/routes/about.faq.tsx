@@ -3,6 +3,8 @@ import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
+const faqSectionName = "Frequently Asked Questions";
+
 export function meta() {
   return {
     title: `FAQs | ${siteTitle}`,
@@ -13,7 +15,7 @@ export async function loader() {
   checkEnvVars();
 
   const res = await fetch(
-    `${process.env.STRAPI_URL_BASE}/api/about?populate=*`,
+    `${process.env.STRAPI_URL_BASE}/api/about?populate[0]=faqs`,
     {
       method: "GET",
       headers: {
@@ -27,24 +29,29 @@ export async function loader() {
   checkStatus(res);
 
   const data = await res.json();
+  const faqs = data.data.attributes.faqs;
 
-  // Did Strapi return an error object in its response?
+  // Throw error if there is no data
+  if (!faqs) {
+    throw new Error(`No ${faqSectionName} data in Strapi instance.`);
+  }
+
   if (data.error) {
+    // Did Strapi return an error object in its response?
     console.error("Error", data.error);
     throw new Response("Error getting data from Strapi", {
       status: 500,
     });
   }
 
-  return data.data;
+  return faqs;
 }
 
 export default function ContactRoute() {
-  const data = useLoaderData();
-  const faqs = data.attributes.faqs;
+  const faqs = useLoaderData();
   return (
     <div id="faq-page-content">
-      <Hero text="Frequently Asked Questions" page="faq" />
+      <Hero text={faqSectionName} page="faq" />
       <div
         id="about-info"
         className="flex min-h-[75vh] flex-col gap-y-14 p-5 pb-14 sm:py-20 sm:px-32"
@@ -58,8 +65,16 @@ export default function ContactRoute() {
         <ul className="mx-auto flex flex-col gap-y-8 text-sm sm:text-base lg:px-32">
           {faqs.map((faq: any) => (
             <li key={faq.id}>
-              <p className="pb-1 font-bold">{faq.question}</p>
-              <p>{faq.answer}</p>
+              <p className="pb-1 font-bold">
+                {faq.question
+                  ? faq.question
+                  : `(No text in question field for id ${faq.id}.)`}
+              </p>
+              <p>
+                {faq.answer
+                  ? faq.answer
+                  : `(No text in answer field for id ${faq.id}.)`}
+              </p>
             </li>
           ))}
         </ul>
