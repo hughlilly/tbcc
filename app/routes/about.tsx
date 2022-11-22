@@ -39,7 +39,7 @@ export async function loader() {
   return data.data;
 }
 
-export default function ContactRoute() {
+export default function AboutRoute() {
   const data = useLoaderData();
   return (
     <div id="about-page-content">

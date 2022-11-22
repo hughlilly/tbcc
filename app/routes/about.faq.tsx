@@ -47,7 +47,7 @@ export async function loader() {
   return faqs;
 }
 
-export default function ContactRoute() {
+export default function FAQRoute() {
   const faqs = useLoaderData();
   return (
     <div id="faq-page-content">
