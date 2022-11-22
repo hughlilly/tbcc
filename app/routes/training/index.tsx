@@ -29,7 +29,6 @@ export async function loader() {
   checkStatus(res);
 
   const data = await res.json();
-  console.log(data.data);
 
   // Did Strapi return an error object in its response?
   if (data.error) {
