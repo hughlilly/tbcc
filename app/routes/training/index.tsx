@@ -61,7 +61,7 @@ export async function loader() {
   return data.data;
 }
 
-export default function TrainingRoute() {
+export default function Training() {
   const data = useLoaderData();
   return (
     <div id="training-page-content">

@@ -56,7 +56,7 @@ export async function loader() {
   return data.data;
 }
 
-export default function LawsRoute() {
+export default function Laws() {
   const data = useLoaderData();
 
   return (
