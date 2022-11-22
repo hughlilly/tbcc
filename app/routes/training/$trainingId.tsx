@@ -1,0 +1,123 @@
+import { useLoaderData } from "@remix-run/react";
+import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
+import { siteTitle } from "~/root";
+import Hero from "~/shared/components/hero";
+
+export function meta({ data }: any): { title: string } {
+  return {
+    title: `${data.attributes.ShotName} | Training Materials | ${siteTitle}`,
+  };
+}
+
+export async function loader({ params }: any) {
+  checkEnvVars();
+
+  const res = await fetch(
+    `${process.env.STRAPI_URL_BASE}/api/training-materials` +
+      `?populate=*&filters[slug]=${params.trainingId}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  // Handle HTTP response code < 200 or >= 300
+  checkStatus(res);
+
+  const data = await res.json();
+
+  // Did Strapi return an error object in its response?
+  if (data.error) {
+    console.error("Error", data.error);
+    throw new Response("Error getting data from Strapi", {
+      status: 500,
+    });
+  }
+
+  // Did Strapi return an empty list?
+  if (!data.data || data.data.length === 0) {
+    console.error(data);
+    throw new Response("Not Found", { status: 404 });
+  }
+
+  const training = data.data[0];
+
+  training.attributes.Photo.data = training.attributes.Photo.data ?? [];
+  for (const photo of training.attributes.Photo.data) {
+    if (!photo.attributes.formats.thumbnail.url.startsWith("http")) {
+      photo.attributes.formats.thumbnail =
+        process.env.STRAPI_URL_BASE +
+        photo.attributes.formats.thumbnail;
+    }
+
+    if (
+      photo.attributes.formats.small &&
+      !photo.attributes.formats.small.url.startsWith("http")
+    ) {
+      photo.attributes.formats.small.url =
+        process.env.STRAPI_URL_BASE +
+        photo.attributes.formats.small.url;
+    }
+
+    if (
+      photo.attributes.formats.medium &&
+      !photo.attributes.formats.medium.url.startsWith("http")
+    ) {
+      photo.attributes.formats.medium.url =
+        process.env.STRAPI_URL_BASE +
+        photo.attributes.formats.medium.url;
+    }
+
+    if (
+      photo.attributes.formats.large &&
+      !photo.attributes.formats.large.url.startsWith("http")
+    ) {
+      photo.attributes.formats.large.url =
+        process.env.STRAPI_URL_BASE +
+        photo.attributes.formats.large.url;
+    }
+  }
+  return training;
+}
+
+export default function TrainingRoute() {
+  const training = useLoaderData();
+
+  return (
+    <div className="flex flex-col">
+      <Hero
+        text={`Training Materials: ${training.attributes.ShotName}`}
+        page="training"
+      />
+      <div
+        className="flex flex-col py-10 sm:flex-row sm:py-0"
+        key={training.id}
+      >
+        <div
+          // See https://stackoverflow.com/a/70805360/10267529
+          style={{
+            backgroundImage: `url(${
+              process.env.NODE_ENV === "development"
+                ? training.attributes.Photo.data[0].attributes.formats
+                    .medium.url
+                : training.attributes.Photo.data[0].attributes.url
+            })`,
+          }}
+          role="img"
+          // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
+          aria-label={`${training.attributes.Photo.data[0].attributes.alternativeText}`}
+          className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
+        />
+        <div className="flex flex-col px-5 sm:w-1/2 sm:gap-y-5 sm:p-10">
+          <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+            {training.attributes.ShotName}
+          </h1>
+          <p>{training.attributes.Description}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
