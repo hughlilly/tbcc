@@ -48,39 +48,12 @@ export async function loader({ params }: any) {
 
   for (const photo of shot.attributes.Photo.data) {
     if (
-      photo.attributes.formats.thumbnail &&
-      !photo.attributes.formats.thumbnail.url.startsWith("http")
-    ) {
-      photo.attributes.formats.thumbnail =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.thumbnail;
-    }
-
-    if (
-      photo.attributes.formats.small &&
-      !photo.attributes.formats.small.url.startsWith("http")
-    ) {
-      photo.attributes.formats.small.url =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.small.url;
-    }
-
-    if (
       photo.attributes.formats.medium &&
       !photo.attributes.formats.medium.url.startsWith("http")
     ) {
       photo.attributes.formats.medium.url =
         process.env.STRAPI_URL_BASE +
         photo.attributes.formats.medium.url;
-    }
-
-    if (
-      photo.attributes.formats.large &&
-      !photo.attributes.formats.large.url.startsWith("http")
-    ) {
-      photo.attributes.formats.large.url =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.large.url;
     }
   }
   return shot;
