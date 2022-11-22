@@ -31,7 +31,7 @@ export async function loader() {
   }
 
   // Throw error if there is no data
-  if (!data.data[0]) {
+  if (!data.data) {
     throw new Error(`No Home Sections data in Strapi instance.`);
   }
 
