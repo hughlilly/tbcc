@@ -2,11 +2,11 @@ import { NavLink, useLoaderData } from "@remix-run/react";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
-import { sectionName } from ".";
+import { trainingSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {
-    title: `${data.attributes.ShotName} | ${sectionName} | ${siteTitle}`,
+    title: `${data.attributes.ShotName} | ${trainingSectionName} | ${siteTitle}`,
   };
 }
 
@@ -92,7 +92,7 @@ export default function TrainingRoute() {
   return (
     <div className="flex flex-col">
       <Hero
-        text={`${sectionName}: ${shot.attributes.ShotName}`}
+        text={`${trainingSectionName}: ${shot.attributes.ShotName}`}
         page="training"
       />
       <div
@@ -125,7 +125,7 @@ export default function TrainingRoute() {
             to="../"
             className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            ← Back to {sectionName}
+            ← Back to {trainingSectionName}
           </NavLink>
         </div>
       </div>

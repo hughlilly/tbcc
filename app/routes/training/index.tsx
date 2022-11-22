@@ -3,11 +3,11 @@ import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
-export const sectionName = `Training Materials`;
+export const trainingSectionName = `Training Materials`;
 
 export function meta() {
   return {
-    title: `${sectionName} | ${siteTitle}`,
+    title: `${trainingSectionName} | ${siteTitle}`,
   };
 }
 
@@ -50,7 +50,6 @@ export async function loader() {
     }
 
     if (
-      shotPhoto.attributes.Photo.data[0].attributes.formats.small &&
       !shotPhoto.attributes.Photo.data[0].attributes.formats.small.url.startsWith(
         "http"
       )
@@ -61,7 +60,6 @@ export async function loader() {
     }
 
     if (
-      shotPhoto.attributes.Photo.data[0].attributes.formats.medium &&
       !shotPhoto.attributes.Photo.data[0].attributes.formats.medium.url.startsWith(
         "http"
       )
@@ -73,7 +71,6 @@ export async function loader() {
     }
 
     if (
-      shotPhoto.attributes.Photo.data[0].attributes.formats.large &&
       !shotPhoto.attributes.Photo.data[0].attributes.formats.large.url.startsWith(
         "http"
       )
@@ -91,7 +88,7 @@ export default function TrainingRoute() {
   const data = useLoaderData();
   return (
     <div id="training-page-content">
-      <Hero text={`${sectionName}`} page="training" />
+      <Hero text={`${trainingSectionName}`} page="training" />
       <div
         id="training-info"
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
