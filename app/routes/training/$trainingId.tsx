@@ -1,11 +1,13 @@
-import { useLoaderData } from "@remix-run/react";
+import { NavLink, useLoaderData } from "@remix-run/react";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 
+const sectionName = "Training Materials";
+
 export function meta({ data }: any): { title: string } {
   return {
-    title: `${data.attributes.ShotName} | Training Materials | ${siteTitle}`,
+    title: `${data.attributes.ShotName} | ${sectionName} | ${siteTitle}`,
   };
 }
 
@@ -43,11 +45,13 @@ export async function loader({ params }: any) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const training = data.data[0];
+  const shot = data.data[0];
 
-  training.attributes.Photo.data = training.attributes.Photo.data ?? [];
-  for (const photo of training.attributes.Photo.data) {
-    if (!photo.attributes.formats.thumbnail.url.startsWith("http")) {
+  for (const photo of shot.attributes.Photo.data) {
+    if (
+      photo.attributes.formats.thumbnail &&
+      !photo.attributes.formats.thumbnail.url.startsWith("http")
+    ) {
       photo.attributes.formats.thumbnail =
         process.env.STRAPI_URL_BASE +
         photo.attributes.formats.thumbnail;
@@ -80,42 +84,50 @@ export async function loader({ params }: any) {
         photo.attributes.formats.large.url;
     }
   }
-  return training;
+  return shot;
 }
 
 export default function TrainingRoute() {
-  const training = useLoaderData();
+  const shot = useLoaderData();
 
   return (
     <div className="flex flex-col">
       <Hero
-        text={`Training Materials: ${training.attributes.ShotName}`}
+        text={`${sectionName}: ${shot.attributes.ShotName}`}
         page="training"
       />
       <div
         className="flex flex-col py-10 sm:flex-row sm:py-0"
-        key={training.id}
+        key={shot.id}
       >
         <div
           // See https://stackoverflow.com/a/70805360/10267529
           style={{
             backgroundImage: `url(${
               process.env.NODE_ENV === "development"
-                ? training.attributes.Photo.data[0].attributes.formats
+                ? shot.attributes.Photo.data[0].attributes.formats
                     .medium.url
-                : training.attributes.Photo.data[0].attributes.url
+                : shot.attributes.Photo.data[0].attributes.url
             })`,
           }}
           role="img"
           // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
-          aria-label={`${training.attributes.Photo.data[0].attributes.alternativeText}`}
+          aria-label={`${shot.attributes.Photo.data[0].attributes.alternativeText}`}
           className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
         />
-        <div className="flex flex-col px-5 sm:w-1/2 sm:gap-y-5 sm:p-10">
-          <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
-            {training.attributes.ShotName}
-          </h1>
-          <p>{training.attributes.Description}</p>
+        <div className="flex flex-col justify-between sm:w-1/2 sm:p-10">
+          <div className="flex flex-col gap-y-5">
+            <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+              {shot.attributes.ShotName}
+            </h1>
+            <p>{shot.attributes.Description}</p>
+          </div>
+          <NavLink
+            to="../"
+            className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
+          >
+            ← Back to {sectionName}
+          </NavLink>
         </div>
       </div>
     </div>
