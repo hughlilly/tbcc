@@ -30,6 +30,11 @@ export async function loader() {
     });
   }
 
+  // Throw error if there is no data
+  if (!data.data[0]) {
+    throw new Error(`No Home Sections data in Strapi instance.`);
+  }
+
   for (const section of data.data.attributes.section) {
     if (
       !section.image.data.attributes.formats.thumbnail.url.startsWith(

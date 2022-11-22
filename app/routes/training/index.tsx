@@ -3,7 +3,7 @@ import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
-export const trainingSectionName = `Training Materials`;
+export const trainingSectionName = "Training Materials";
 
 export function meta() {
   return {
@@ -38,27 +38,14 @@ export async function loader() {
     });
   }
 
+  // Throw error if there is no data
+  if (!data.data[0]) {
+    throw new Error(
+      `No ${trainingSectionName} data in Strapi instance.`
+    );
+  }
+
   for (const shotPhoto of data.data) {
-    if (
-      !shotPhoto.attributes.Photo.data[0].attributes.formats.thumbnail.url.startsWith(
-        "http"
-      )
-    ) {
-      shotPhoto.attributes.Photo.data[0].attributes.formats.thumbnail =
-        process.env.STRAPI_URL_BASE +
-        shotPhoto.attributes.Photo.data[0].attributes.formats.thumbnail;
-    }
-
-    if (
-      !shotPhoto.attributes.Photo.data[0].attributes.formats.small.url.startsWith(
-        "http"
-      )
-    ) {
-      shotPhoto.attributes.Photo.data[0].attributes.formats.small.url =
-        process.env.STRAPI_URL_BASE +
-        shotPhoto.attributes.Photo.data[0].attributes.formats.small.url;
-    }
-
     if (
       !shotPhoto.attributes.Photo.data[0].attributes.formats.medium.url.startsWith(
         "http"
@@ -68,16 +55,6 @@ export async function loader() {
         process.env.STRAPI_URL_BASE +
         shotPhoto.attributes.Photo.data[0].attributes.formats.medium
           .url;
-    }
-
-    if (
-      !shotPhoto.attributes.Photo.data[0].attributes.formats.large.url.startsWith(
-        "http"
-      )
-    ) {
-      shotPhoto.attributes.Photo.data[0].attributes.formats.large.url =
-        process.env.STRAPI_URL_BASE +
-        shotPhoto.attributes.Photo.data[0].attributes.formats.large.url;
     }
   }
 
