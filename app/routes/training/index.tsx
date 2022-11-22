@@ -3,11 +3,11 @@ import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
-const pageTitle = `Training Materials`;
+export const sectionName = `Training Materials`;
 
 export function meta() {
   return {
-    title: `${pageTitle} | ${siteTitle}`,
+    title: `${sectionName} | ${siteTitle}`,
   };
 }
 
@@ -91,7 +91,7 @@ export default function TrainingRoute() {
   const data = useLoaderData();
   return (
     <div id="training-page-content">
-      <Hero text={`${pageTitle}`} page="training" />
+      <Hero text={`${sectionName}`} page="training" />
       <div
         id="training-info"
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"

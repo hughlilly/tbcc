@@ -2,8 +2,7 @@ import { NavLink, useLoaderData } from "@remix-run/react";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
-
-const sectionName = "Training Materials";
+import { sectionName } from ".";
 
 export function meta({ data }: any): { title: string } {
   return {
