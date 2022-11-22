@@ -45,16 +45,16 @@ export async function loader() {
     );
   }
 
-  for (const shotPhoto of data.data) {
-    if (
-      !shotPhoto.attributes.Photo.data[0].attributes.formats.medium.url.startsWith(
-        "http"
-      )
-    ) {
-      shotPhoto.attributes.Photo.data[0].attributes.formats.medium.url =
-        process.env.STRAPI_URL_BASE +
-        shotPhoto.attributes.Photo.data[0].attributes.formats.medium
-          .url;
+  for (const shot of data.data) {
+    for (const shotPhoto of shot.attributes.Photo.data) {
+      if (
+        shotPhoto.attributes.formats.medium &&
+        !shotPhoto.attributes.formats.medium.url.startsWith("http")
+      ) {
+        shotPhoto.attributes.formats.medium.url =
+          process.env.STRAPI_URL_BASE +
+          shotPhoto.attributes.formats.medium.url;
+      }
     }
   }
 
