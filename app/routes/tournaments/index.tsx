@@ -75,7 +75,7 @@ export default function Tournaments() {
             tournament.attributes.photos.data[0].attributes;
           return (
             <div
-              className="flex max-w-sm flex-col gap-y-5 pt-14 sm:pt-0"
+              className="flex min-w-[18rem] flex-col gap-y-5 pt-14 sm:pt-0"
               key={tournament.id}
             >
               <Link
