@@ -65,10 +65,13 @@ export async function loader() {
 
 export default function Training() {
   const data = useLoaderData();
+
   return (
     <div id="training-page-content">
       <Hero text={`${trainingSectionName}`} page="training" />
-      <div
+      <div>{data.map((shot: any) => shot.id)}</div>
+
+      {/* <div
         id="training-info"
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
@@ -98,7 +101,7 @@ export default function Training() {
             <p>{shot.attributes.Description}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
