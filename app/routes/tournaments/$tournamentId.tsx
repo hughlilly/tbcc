@@ -2,9 +2,9 @@ import { useLoaderData, NavLink } from "@remix-run/react";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
 import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
-import { tournamentsSectionName } from "./index";
 import { IntlDate } from "~/providers/IntlDate";
 import { Time } from "~/providers/Time";
+import { tournamentsSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {

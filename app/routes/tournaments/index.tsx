@@ -8,7 +8,7 @@ export const tournamentsSectionName = "Tournaments";
 
 export function meta() {
   return {
-    title: `Tournaments | ${siteTitle}`,
+    title: `${tournamentsSectionName} | ${siteTitle}`,
   };
 }
 
@@ -61,7 +61,7 @@ export default function Tournaments() {
   const tournaments = useLoaderData();
 
   return (
-    <div className="flex flex-col">
+    <div id="tournaments-page-content">
       <Hero text={`${tournamentsSectionName}`} page="tournaments" />
       <div
         id="tournaments-info"
