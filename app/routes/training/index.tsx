@@ -45,15 +45,17 @@ export async function loader() {
     );
   }
 
-  for (const shot of data.data) {
-    for (const shotPhoto of shot.attributes.Photo.data) {
-      if (
-        shotPhoto.attributes.formats.medium &&
-        !shotPhoto.attributes.formats.medium.url.startsWith("http")
-      ) {
-        shotPhoto.attributes.formats.medium.url =
-          process.env.STRAPI_URL_BASE +
-          shotPhoto.attributes.formats.medium.url;
+  if (process.env.NODE_ENV === "development") {
+    for (const shot of data.data) {
+      for (const shotPhoto of shot.attributes.Photo.data) {
+        if (
+          shotPhoto.attributes.formats.medium &&
+          !shotPhoto.attributes.formats.medium.url.startsWith("http")
+        ) {
+          shotPhoto.attributes.formats.medium.url =
+            process.env.STRAPI_URL_BASE +
+            shotPhoto.attributes.formats.medium.url;
+        }
       }
     }
   }
