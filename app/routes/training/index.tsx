@@ -84,7 +84,7 @@ export default function Training() {
               >
                 <img
                   src={
-                    process.env.NODE_ENV === "development"
+                    photoData.formats.medium
                       ? photoData.formats.medium.url
                       : photoData.url
                   }
