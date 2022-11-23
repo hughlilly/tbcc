@@ -20,6 +20,9 @@ export default function handleRequest(
   const locales = parseAcceptLanguage(acceptLanguage, {
     validate: Intl.DateTimeFormat.supportedLocalesOf,
   });
+  console.log(`${locales} in server entry file: locales`);
+  console.log(`${acceptLanguage} in server entry file: acceptLanguage`);
+
   return isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
         request,
