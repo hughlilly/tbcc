@@ -39,6 +39,13 @@ export async function loader() {
     });
   }
 
+  // Throw error if there is no data
+  if (!data.data[0]) {
+    throw new Error(
+      `No ${tournamentsSectionName} data in Strapi instance.`
+    );
+  }
+
   for (const tournament of data.data) {
     for (const tournamentPhoto of tournament.attributes.photos.data) {
       if (
