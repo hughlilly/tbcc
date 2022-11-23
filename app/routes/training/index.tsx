@@ -69,9 +69,8 @@ export default function Training() {
   return (
     <div id="training-page-content">
       <Hero text={`${trainingSectionName}`} page="training" />
-      <div>{data.map((shot: any) => shot.id)}</div>
 
-      {/* <div
+      <div
         id="training-info"
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
@@ -81,7 +80,7 @@ export default function Training() {
               to={shot.attributes.slug}
               className="flex flex-col items-center gap-y-5"
             >
-              <img
+              {/* <img
                 src={
                   process.env.NODE_ENV === "development"
                     ? shot.attributes.Photo.data[0].attributes.formats
@@ -93,7 +92,7 @@ export default function Training() {
                     .alternativeText
                 }
                 className="h-48 w-48 rounded-full"
-              />
+              /> */}
               <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
                 {shot.attributes.ShotName}
               </h1>
@@ -101,7 +100,7 @@ export default function Training() {
             <p>{shot.attributes.Description}</p>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }
