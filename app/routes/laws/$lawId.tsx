@@ -78,7 +78,7 @@ export default function LawsRoute() {
           // See https://stackoverflow.com/a/70805360/10267529
           style={{
             backgroundImage: `url(${
-              process.env.NODE_ENV === "development"
+              law.attributes.Photo.data.attributes.formats.medium
                 ? law.attributes.Photo.data.attributes.formats.medium
                     .url
                 : law.attributes.Photo.data.attributes.url

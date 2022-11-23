@@ -78,7 +78,7 @@ export default function Laws() {
             >
               <img
                 src={
-                  process.env.NODE_ENV === "development"
+                  law.attributes.Photo.data.attributes.formats.medium
                     ? law.attributes.Photo.data.attributes.formats
                         .medium.url
                     : law.attributes.Photo.data.attributes.url
