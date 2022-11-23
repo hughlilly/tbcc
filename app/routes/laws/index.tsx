@@ -47,7 +47,7 @@ export async function loader() {
   for (const law of data.data) {
     // Only one photo on this content type
     if (
-      law.attributes.Photo.data.attributes.formats.medium.url &&
+      law.attributes.Photo.data.attributes.formats.medium &&
       !law.attributes.Photo.data.attributes.formats.medium.url.startsWith(
         "http"
       )
