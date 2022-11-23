@@ -86,7 +86,7 @@ export default function Laws() {
                 alt={
                   law.attributes.Photo.data.attributes.alternativeText
                 }
-                className="h-48 w-48 rounded-full"
+                className="h-48 w-48 rounded-full object-cover"
               />
               <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
                 {law.attributes.LawName}

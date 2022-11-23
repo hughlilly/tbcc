@@ -99,7 +99,7 @@ export default function Tournaments() {
                     tournamentData.photos.data[0].attributes
                       .alternativeText
                   }
-                  className="h-48 w-48 rounded-full"
+                  className="h-48 w-48 rounded-full object-cover"
                 />
                 <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
                   {tournamentData.title}
