@@ -71,30 +71,29 @@ export default function Laws() {
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
         {data.map((law: any) => (
-          <p key={law.id}>law.id</p>
-          // <div className="flex flex-col gap-y-5" key={law.id}>
-          //   <Link
-          //     to={law.attributes.slug}
-          //     className="flex flex-col items-center gap-y-5"
-          //   >
-          //     {/* <img
-          //       src={
-          //         law.attributes.Photo.data.attributes.formats.medium
-          //           ? law.attributes.Photo.data.attributes.formats
-          //               .medium.url
-          //           : law.attributes.Photo.data.attributes.url
-          //       }
-          //       alt={
-          //         law.attributes.Photo.data.attributes.alternativeText
-          //       }
-          //       className="h-48 w-48 rounded-full object-cover"
-          //     /> */}
-          //     <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
-          //       {law.attributes.LawName}
-          //     </h1>
-          //   </Link>
-          //   <p>{law.attributes.Description}</p>
-          // </div>
+          <div className="flex flex-col gap-y-5" key={law.id}>
+            {/* <Link
+              to={law.attributes.slug}
+              className="flex flex-col items-center gap-y-5"
+            >
+              <img
+                src={
+                  law.attributes.Photo.data.attributes.formats.medium
+                    ? law.attributes.Photo.data.attributes.formats
+                        .medium.url
+                    : law.attributes.Photo.data.attributes.url
+                }
+                alt={
+                  law.attributes.Photo.data.attributes.alternativeText
+                }
+                className="h-48 w-48 rounded-full object-cover"
+              />
+              <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+                {law.attributes.LawName}
+              </h1>
+            </Link> */}
+            <p>{law.attributes.Description}</p>
+          </div>
         ))}
       </div>
     </div>
