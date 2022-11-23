@@ -97,20 +97,38 @@ export default function TournamentsRoute() {
           role="img"
           // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
           aria-label={`${tournament.attributes.photos.data[0].attributes.alternativeText}`}
-          className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
+          className="mx-auto h-44 w-44 rounded-full bg-cover bg-center sm:h-auto sm:min-w-[50%] sm:rounded-none"
         />
-        <div className="flex flex-col justify-between sm:w-1/2 sm:p-10">
+        <div className="flex flex-col justify-between p-5 sm:w-1/2 sm:p-10">
           <div className="flex flex-col gap-y-5">
-            <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+            <h1 className="pt-5 text-center text-2xl font-bold sm:gap-y-0">
               {tournament.attributes.title}
             </h1>
-            <p>{tournament.attributes.desc}</p>
+            <p className="sm:pt-6">{tournament.attributes.desc}</p>
           </div>
-          <div className="flex flex-row">
-            <div
-              id={`${tournament.attributes.slug}-metadata`}
-              className="m-8 flex h-full flex-col items-center justify-center rounded text-sm"
-            ></div>
+          <div className="m-4 mt-16 flex flex-col rounded-md border sm:mt-0 sm:h-auto sm:flex-row lg:my-10">
+            <div className="mx-auto sm:w-1/2 sm:pl-5">
+              <div
+                id={`${tournament.attributes.slug}-metadata`}
+                className="flex h-32 flex-col justify-center"
+              >
+                <div className="font-bold">
+                  {tournament.attributes.location.data.attributes.name}
+                </div>
+                <IntlDate
+                  date={new Date(tournament.attributes.startTime)}
+                />
+                <div>
+                  <Time
+                    date={new Date(tournament.attributes.startTime)}
+                  />
+                  <span> – </span>
+                  <Time
+                    date={new Date(tournament.attributes.endTime)}
+                  />
+                </div>
+              </div>
+            </div>
             <div
               style={{
                 backgroundImage: `url(${
@@ -123,22 +141,12 @@ export default function TournamentsRoute() {
               }}
               role="img"
               aria-label={`${tournament.attributes.location.data.attributes.image.data.attributes.alternativeText}`}
+              className="h-32 bg-cover bg-center sm:h-auto sm:w-1/2"
             ></div>
-            <p className="pt-5 font-bold">
-              {tournament.attributes.location.data.attributes.name}
-            </p>
-            <IntlDate
-              date={new Date(tournament.attributes.startTime)}
-            />
-            <p>
-              <Time date={new Date(tournament.attributes.startTime)} />
-              <span> – </span>
-              <Time date={new Date(tournament.attributes.endTime)} />
-            </p>
           </div>
           <NavLink
             to="../"
-            className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="pt-10 text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4 sm:pt-0"
           >
             ← Back to {tournamentsSectionName}
           </NavLink>
