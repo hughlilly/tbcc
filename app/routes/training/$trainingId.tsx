@@ -77,7 +77,7 @@ export default function TrainingRoute() {
           // See https://stackoverflow.com/a/70805360/10267529
           style={{
             backgroundImage: `url(${
-              process.env.NODE_ENV === "development"
+              shot.attributes.Photo.data[0].attributes.formats.medium
                 ? shot.attributes.Photo.data[0].attributes.formats
                     .medium.url
                 : shot.attributes.Photo.data[0].attributes.url
