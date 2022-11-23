@@ -74,32 +74,31 @@ export default function Training() {
         id="training-info"
         className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
-        {data.map((shot: any) => (
-          <div className="flex flex-col gap-y-5" key={shot.id}>
-            <Link
-              to={shot.attributes.slug}
-              className="flex flex-col items-center gap-y-5"
-            >
-              {/* <img
-                src={
-                  process.env.NODE_ENV === "development"
-                    ? shot.attributes.Photo.data[0].attributes.formats
-                        .medium.url
-                    : shot.attributes.Photo.data[0].attributes.url
-                }
-                alt={
-                  shot.attributes.Photo.data[0].attributes
-                    .alternativeText
-                }
-                className="h-48 w-48 rounded-full"
-              /> */}
-              <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
-                {shot.attributes.ShotName}
-              </h1>
-            </Link>
-            <p>{shot.attributes.Description}</p>
-          </div>
-        ))}
+        {data.map((shot: any) => {
+          const photoData = shot.attributes.Photo.data[0].attributes;
+          return (
+            <div className="flex flex-col gap-y-5" key={shot.id}>
+              <Link
+                to={shot.attributes.slug}
+                className="flex flex-col items-center gap-y-5"
+              >
+                <img
+                  src={
+                    process.env.NODE_ENV === "development"
+                      ? photoData.formats.medium.url
+                      : photoData.url
+                  }
+                  alt={photoData.alternativeText}
+                  className="h-48 w-48 rounded-full"
+                />
+                <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+                  {shot.attributes.ShotName}
+                </h1>
+              </Link>
+              <p>{shot.attributes.Description}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
