@@ -56,6 +56,7 @@ export async function loader({ params }: any) {
         photo.attributes.formats.medium.url;
     }
   }
+
   return shot;
 }
 

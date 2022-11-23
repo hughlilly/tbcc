@@ -6,7 +6,8 @@ import { lawsSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {
-    title: `${data.attributes.LawName} | ${lawsSectionName} | ${siteTitle}`,
+    // title: `${data.attributes.LawName} | ${lawsSectionName} | ${siteTitle}`,
+    title: `${lawsSectionName} | ${siteTitle}`,
   };
 }
 
@@ -15,7 +16,7 @@ export async function loader({ params }: any) {
 
   const res = await fetch(
     `${process.env.STRAPI_URL_BASE}/api/laws` +
-      `?populate=*&filters[slug]=${params.trainingId}`,
+      `?populate=*&filters[slug]=${params.lawId}`,
     {
       method: "GET",
       headers: {
@@ -44,82 +45,56 @@ export async function loader({ params }: any) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const shot = data.data[0];
+  const law = data.data[0];
 
-  for (const photo of shot.attributes.Photo.data) {
-    if (
-      photo.attributes.formats.thumbnail &&
-      !photo.attributes.formats.thumbnail.url.startsWith("http")
-    ) {
-      photo.attributes.formats.thumbnail =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.thumbnail;
-    }
-
-    if (
-      photo.attributes.formats.small &&
-      !photo.attributes.formats.small.url.startsWith("http")
-    ) {
-      photo.attributes.formats.small.url =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.small.url;
-    }
-
-    if (
-      photo.attributes.formats.medium &&
-      !photo.attributes.formats.medium.url.startsWith("http")
-    ) {
-      photo.attributes.formats.medium.url =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.medium.url;
-    }
-
-    if (
-      photo.attributes.formats.large &&
-      !photo.attributes.formats.large.url.startsWith("http")
-    ) {
-      photo.attributes.formats.large.url =
-        process.env.STRAPI_URL_BASE +
-        photo.attributes.formats.large.url;
-    }
+  if (
+    law.attributes.Photo.data.attributes.formats.medium &&
+    !law.attributes.Photo.data.attributes.formats.medium.url.startsWith(
+      "http"
+    )
+  ) {
+    law.attributes.Photo.data.attributes.formats.medium.url =
+      process.env.STRAPI_URL_BASE +
+      law.attributes.Photo.data.attributes.formats.medium.url;
   }
-  return shot;
+
+  return law;
 }
 
 export default function LawsRoute() {
-  const shot = useLoaderData();
+  const law = useLoaderData();
 
   return (
     <div className="flex flex-col">
       <Hero
-        text={`${lawsSectionName}: ${shot.attributes.ShotName}`}
-        page="training"
+        text={`${lawsSectionName}: ${law.attributes.LawName}`}
+        page="laws"
       />
       <div
         className="flex flex-col py-10 sm:flex-row sm:py-0"
-        key={shot.id}
+        key={law.id}
       >
         <div
           // See https://stackoverflow.com/a/70805360/10267529
           style={{
             backgroundImage: `url(${
               process.env.NODE_ENV === "development"
-                ? shot.attributes.Photo.data[0].attributes.formats
-                    .medium.url
-                : shot.attributes.Photo.data[0].attributes.url
+                ? law.attributes.Photo.data.attributes.formats.medium
+                    .url
+                : law.attributes.Photo.data.attributes.url
             })`,
           }}
           role="img"
           // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
-          aria-label={`${shot.attributes.Photo.data[0].attributes.alternativeText}`}
+          aria-label={`${law.attributes.Photo.data.attributes.alternativeText}`}
           className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
         />
         <div className="flex flex-col justify-between sm:w-1/2 sm:p-10">
           <div className="flex flex-col gap-y-5">
             <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
-              {shot.attributes.ShotName}
+              {law.attributes.LawName}
             </h1>
-            <p>{shot.attributes.Description}</p>
+            <p>{law.attributes.Description}</p>
           </div>
           <NavLink
             to="../"
