@@ -6,6 +6,7 @@ import { LocaleContextProvider } from "./providers/LocaleProvider";
 function hydrate() {
   startTransition(() => {
     const locales = window.navigator.languages;
+    console.log("In client entry file: ", locales);
 
     hydrateRoot(
       document,
