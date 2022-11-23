@@ -50,7 +50,10 @@ export async function loader({ params }: any) {
   const tournament = data.data[0];
 
   for (const photo of tournament.attributes.photos.data) {
-    if (!photo.attributes.formats.medium.url.startsWith("http")) {
+    if (
+      photo.attributes.formats.medium &&
+      !photo.attributes.formats.medium.url.startsWith("http")
+    ) {
       photo.attributes.formats.medium.url =
         process.env.STRAPI_URL_BASE +
         photo.attributes.formats.medium.url;
@@ -58,6 +61,8 @@ export async function loader({ params }: any) {
   }
 
   if (
+    tournament.attributes.location.data.attributes.image.data.attributes
+      .formats.medium &&
     !tournament.attributes.location.data.attributes.image.data.attributes.formats.medium.url.startsWith(
       "http"
     )
