@@ -1,6 +1,10 @@
 import { Link, useLoaderData } from "@remix-run/react";
+import { IntlDate } from "~/providers/IntlDate";
+import { Time } from "~/providers/Time";
 import { siteTitle } from "~/root";
+import Hero from "~/shared/components/hero";
 import { checkStatus, checkEnvVars } from "~/utils/errorHandling";
+export const tournamentsSectionName = "Tournaments";
 
 export function meta() {
   return {
@@ -57,92 +61,69 @@ export default function Tournaments() {
   const tournaments = useLoaderData();
 
   return (
-    <div
-      id="tournaments-info"
-      className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-5 divide-y divide-solid p-2 px-5 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
-    >
-      {tournaments.map((tournament: any) => {
-        const tournamentData = tournament.attributes;
-        const locationData =
-          tournament.attributes.location.data.attributes;
-        const photoData =
-          tournament.attributes.photos.data[0].attributes;
-        return (
-          <div
-            className="flex flex-col gap-y-5 pt-14 sm:px-28 sm:pt-0"
-            key={tournament.id}
-          >
-            <Link
-              to={tournamentData.slug}
-              className="flex flex-col items-center gap-y-5"
-            >
-              <img
-                src={
-                  process.env.NODE_ENV === "development"
-                    ? photoData.formats.medium.url
-                    : photoData.url
-                }
-                alt={
-                  tournamentData.photos.data[0].attributes
-                    .alternativeText
-                }
-                className="h-48 w-48 rounded-full"
-              />
-              <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
-                {tournamentData.title}
-              </h1>
-            </Link>
+    <div className="flex flex-col">
+      <Hero text={`${tournamentsSectionName}`} page="tournaments" />
+      <div
+        id="tournaments-info"
+        className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-5 divide-y divide-solid p-2 px-5 pb-14 sm:divide-none sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
+      >
+        {tournaments.map((tournament: any) => {
+          const tournamentData = tournament.attributes;
+          const locationData =
+            tournament.attributes.location.data.attributes;
+          const photoData =
+            tournament.attributes.photos.data[0].attributes;
+          return (
             <div
-              id={`${tournamentData.slug}-metadata`}
-              className="text-sm"
+              className="flex flex-col gap-y-5 pt-14 sm:px-28 sm:pt-0"
+              key={tournament.id}
             >
-              <p className="pt-5 font-bold">{locationData.name}</p>
-              <p>
-                {new Date(tournamentData.startTime).toLocaleDateString(
-                  undefined,
-                  {
-                    dateStyle: "full",
-                  }
-                )}
-              </p>
-              <p>
-                <time
-                  dateTime={tournamentData.startTime}
-                  id={`${tournamentData.slug}-start-time`}
-                >
-                  {new Date(
-                    tournamentData.startTime
-                  ).toLocaleTimeString(undefined, {
-                    timeStyle: "short",
-                  })}
-                </time>
-                <span> – </span>
-                <time
-                  dateTime={tournamentData.endTime}
-                  id={`${tournamentData.slug}-end-time`}
-                >
-                  {new Date(tournamentData.endTime).toLocaleTimeString(
-                    undefined,
-                    {
-                      timeStyle: "short",
-                    }
-                  )}
-                </time>
-              </p>
-            </div>
-            <p className=" line-clamp-3 ">
-              {/* {truncateString(tournamentData.desc, 220)}{" "} */}
-              {tournamentData.desc}{" "}
               <Link
                 to={tournamentData.slug}
-                className="font-bold hover:underline"
+                className="flex flex-col items-center gap-y-5"
               >
-                Read more »
+                <img
+                  src={
+                    process.env.NODE_ENV === "development"
+                      ? photoData.formats.medium.url
+                      : photoData.url
+                  }
+                  alt={
+                    tournamentData.photos.data[0].attributes
+                      .alternativeText
+                  }
+                  className="h-48 w-48 rounded-full"
+                />
+                <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+                  {tournamentData.title}
+                </h1>
               </Link>
-            </p>
-          </div>
-        );
-      })}
+              <div
+                id={`${tournamentData.slug}-metadata`}
+                className="text-sm"
+              >
+                <p className="pt-5 font-bold">{locationData.name}</p>
+                <IntlDate date={new Date(tournamentData.startTime)} />
+                <p>
+                  <Time date={new Date(tournamentData.startTime)} />
+                  <span> – </span>
+                  <Time date={new Date(tournamentData.endTime)} />
+                </p>
+              </div>
+              <p className=" line-clamp-3 ">
+                {/* {truncateString(tournamentData.desc, 220)}{" "} */}
+                {tournamentData.desc}{" "}
+                <Link
+                  to={tournamentData.slug}
+                  className="font-bold hover:underline"
+                >
+                  Read more »
+                </Link>
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
