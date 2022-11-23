@@ -38,11 +38,11 @@ export async function loader() {
     });
   }
 
-  return data.data;
+  return data.data.attributes.main;
 }
 
 export default function AboutRoute() {
-  const data = useLoaderData();
+  const { heading, body } = useLoaderData();
   return (
     <div id="about-page-content">
       <Hero text={aboutPageTitle} page="about" />
@@ -54,13 +54,13 @@ export default function AboutRoute() {
           className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0"
           id="about-heading"
         >
-          {data.attributes.main.heading}
+          {heading}
         </h1>
         <p
           id="about-body-text"
           className="whitespace-pre-wrap text-sm sm:text-base"
         >
-          {data.attributes.main.body}
+          {body}
         </p>
         <Link
           to="faq"
