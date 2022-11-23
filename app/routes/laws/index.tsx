@@ -72,11 +72,11 @@ export default function Laws() {
       >
         {data.map((law: any) => (
           <div className="flex flex-col gap-y-5" key={law.id}>
-            {/* <Link
+            <Link
               to={law.attributes.slug}
               className="flex flex-col items-center gap-y-5"
             >
-              <img
+              {/* <img
                 src={
                   law.attributes.Photo.data.attributes.formats.medium
                     ? law.attributes.Photo.data.attributes.formats
@@ -87,11 +87,11 @@ export default function Laws() {
                   law.attributes.Photo.data.attributes.alternativeText
                 }
                 className="h-48 w-48 rounded-full object-cover"
-              />
+              /> */}
               <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
                 {law.attributes.LawName}
               </h1>
-            </Link> */}
+            </Link>
             <p>{law.attributes.Description}</p>
           </div>
         ))}
