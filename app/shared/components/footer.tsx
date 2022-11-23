@@ -68,7 +68,7 @@ export default function Footer() {
           className="hidden self-end sm:block"
         >
           <img
-            src={"badminton.png"}
+            src={"/badminton.png"}
             height={"40px"}
             width={"40px"}
             alt={"Badminton icon"}
