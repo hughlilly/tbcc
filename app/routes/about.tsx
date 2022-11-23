@@ -3,9 +3,11 @@ import { siteTitle } from "~/root";
 import Hero from "~/shared/components/hero";
 import { checkEnvVars, checkStatus } from "~/utils/errorHandling";
 
+const aboutPageTitle = "About Us";
+
 export function meta() {
   return {
-    title: `About Us | ${siteTitle}`,
+    title: `${aboutPageTitle} | ${siteTitle}`,
   };
 }
 
@@ -43,7 +45,7 @@ export default function AboutRoute() {
   const data = useLoaderData();
   return (
     <div id="about-page-content">
-      <Hero text="About Us" page="about" />
+      <Hero text={aboutPageTitle} page="about" />
       <div
         id="about-info"
         className="flex min-h-screen flex-col gap-y-10 p-5 pb-14 sm:py-20 sm:px-32"
