@@ -10,7 +10,6 @@ function hydrate() {
     hydrateRoot(
       document,
       <StrictMode>
-        {/* @ts-ignore */}
         <LocaleContextProvider locales={locales}>
           <RemixBrowser />
         </LocaleContextProvider>
