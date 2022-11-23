@@ -107,7 +107,10 @@ export default function ContactRoute() {
                 name="newsletter"
                 id="newsletter"
               />
-              <label htmlFor="newsletter" className="select-none">
+              <label
+                htmlFor="newsletter"
+                className="select-none hover:cursor-pointer"
+              >
                 Yes, sign me up to the newsletter
               </label>
             </div>
@@ -116,7 +119,7 @@ export default function ContactRoute() {
             type="submit"
             name="Submit"
             value="Submit"
-            className="mx-auto bg-purple py-3 px-2 text-white"
+            className="mx-auto bg-purple py-3 px-2 text-white hover:cursor-pointer"
           />
         </form>
       </div>
