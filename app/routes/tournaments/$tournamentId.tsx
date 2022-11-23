@@ -8,7 +8,8 @@ import { Time } from "~/providers/Time";
 
 export function meta({ data }: any): { title: string } {
   return {
-    title: `${data.attributes.title} | ${tournamentsSectionName} | ${siteTitle}`,
+    // title: `${data.attributes.title} | ${tournamentsSectionName} | ${siteTitle}`,
+    title: `${tournamentsSectionName} | ${siteTitle}`,
   };
 }
 
@@ -31,8 +32,6 @@ export async function loader({ params }: any) {
   checkStatus(res);
 
   const data = await res.json();
-
-  console.log(data);
 
   // Did Strapi return an error object in its response?
   if (data.error) {
