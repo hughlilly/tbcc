@@ -76,7 +76,7 @@ export default function Laws() {
               to={law.attributes.slug}
               className="flex flex-col items-center gap-y-5"
             >
-              {/* <img
+              <img
                 src={
                   law.attributes.Photo.data.attributes.formats.medium
                     ? law.attributes.Photo.data.attributes.formats
@@ -87,7 +87,7 @@ export default function Laws() {
                   law.attributes.Photo.data.attributes.alternativeText
                 }
                 className="h-48 w-48 rounded-full object-cover"
-              /> */}
+              />
               <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
                 {law.attributes.LawName}
               </h1>
