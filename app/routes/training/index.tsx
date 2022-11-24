@@ -72,12 +72,15 @@ export default function Training() {
 
       <div
         id="training-info"
-        className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
+        className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 divide-y divide-solid p-2 pb-20 sm:divide-none sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
         {data.map((shot: any) => {
           const photoData = shot.attributes.Photo.data[0].attributes;
           return (
-            <div className="flex flex-col gap-y-5" key={shot.id}>
+            <div
+              className="flex flex-col gap-y-5 pt-14 sm:pt-0"
+              key={shot.id}
+            >
               <Link
                 to={shot.attributes.slug}
                 className="flex flex-col items-center gap-y-5"
@@ -95,7 +98,15 @@ export default function Training() {
                   {shot.attributes.ShotName}
                 </h1>
               </Link>
-              <p>{shot.attributes.Description}</p>
+              <p className="line-clamp-3">
+                {shot.attributes.Description}{" "}
+                <Link
+                  to={shot.attributes.slug}
+                  className="text-sm font-bold uppercase tracking-tight"
+                >
+                  read more »
+                </Link>
+              </p>
             </div>
           );
         })}

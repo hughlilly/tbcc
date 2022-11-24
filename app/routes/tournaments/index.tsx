@@ -72,7 +72,7 @@ export default function Tournaments() {
       <Hero text={`${tournamentsSectionName}`} page="tournaments" />
       <div
         id="tournaments-info"
-        className="flex min-h-[50vh] flex-col justify-center gap-x-10 gap-y-5 divide-y divide-solid p-2 pb-14 sm:divide-none sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
+        className="flex min-h-[50vh] flex-col justify-center gap-x-10 gap-y-5 divide-y divide-solid p-2 pb-20 sm:divide-none sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
         {tournaments.map((tournament: any) => {
           const tournamentData = tournament.attributes;
@@ -117,15 +117,16 @@ export default function Tournaments() {
                   <Time date={new Date(tournamentData.endTime)} />
                 </p>
               </div>
-              {/* See https://github.com/tailwindlabs/tailwindcss-line-clamp */}
+              {/* See https://github.com/tailwindlabs/tailwindcss-line-clamp  */}
+              {/* Using line-clamp on the whole <p> element means that hover  */}
+              {/* rules on the Link (<a> tag) have no effect/they get cut off */}
               <p className="line-clamp-3">
-                {/* {truncateString(tournamentData.desc, 220)}{" "} */}
                 {tournamentData.desc}{" "}
                 <Link
                   to={tournamentData.slug}
-                  className="font-bold hover:underline"
+                  className="text-sm font-bold uppercase tracking-tight"
                 >
-                  Read more »
+                  read more »
                 </Link>
               </p>
             </div>

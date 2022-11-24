@@ -68,13 +68,13 @@ export default function Laws() {
       <Hero text={`${lawsSectionName}`} page="laws" />
       <div
         id="laws-info"
-        className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 p-5 pt-20 pb-14 sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
+        className="flex min-h-[50vh] flex-col justify-evenly gap-x-10 gap-y-14 divide-y divide-solid p-2 pb-20 sm:divide-none sm:py-20 md:px-24 lg:flex-row lg:max-xl:px-44 lg:max-lg:px-96"
       >
         {data.map((law: any) => (
           <div className="flex flex-col gap-y-5" key={law.id}>
             <Link
               to={law.attributes.slug}
-              className="flex flex-col items-center gap-y-5"
+              className="flex flex-col items-center gap-y-5 pt-14 sm:pt-0"
             >
               <img
                 src={
@@ -92,7 +92,15 @@ export default function Laws() {
                 {law.attributes.LawName}
               </h1>
             </Link>
-            <p>{law.attributes.Description}</p>
+            <p className="line-clamp-3">
+              {law.attributes.Description}{" "}
+              <Link
+                to={law.attributes.slug}
+                className="text-sm font-bold uppercase tracking-tight"
+              >
+                read more »
+              </Link>
+            </p>
           </div>
         ))}
       </div>

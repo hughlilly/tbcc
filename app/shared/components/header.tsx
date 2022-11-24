@@ -15,7 +15,8 @@ export default function Header() {
           id="main-navigation"
           className="flex w-full items-center justify-between p-6 font-bold md:px-16 lg:px-24"
         >
-          {/* See https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
+          {/* Need to set leading at each breakpoint;
+           /* see https://tailwindcss.com/docs/line-height#overriding-default-line-heights */}
           <Link
             id="wordmark"
             to="/"
