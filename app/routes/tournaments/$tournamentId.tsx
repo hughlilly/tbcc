@@ -82,7 +82,7 @@ export default function TournamentsRoute() {
   return (
     <div className="flex flex-col">
       <Hero
-        text={`${tournamentsSectionName}: ${tournament.attributes.title}`}
+        text={`${tournamentsSectionName}:\n${tournament.attributes.title}`}
         page="tournaments"
       />
       <div
@@ -93,7 +93,8 @@ export default function TournamentsRoute() {
           // See https://stackoverflow.com/a/70805360/10267529
           style={{
             backgroundImage: `url(${
-              process.env.NODE_ENV === "development"
+              tournament.attributes.photos.data[0].attributes.formats
+                .medium
                 ? tournament.attributes.photos.data[0].attributes
                     .formats.medium.url
                 : tournament.attributes.photos.data[0].attributes.url
@@ -137,7 +138,8 @@ export default function TournamentsRoute() {
             <div
               style={{
                 backgroundImage: `url(${
-                  process.env.NODE_ENV === "development"
+                  tournament.attributes.location.data.attributes.image
+                    .data.attributes.formats.medium
                     ? tournament.attributes.location.data.attributes
                         .image.data.attributes.formats.medium.url
                     : tournament.attributes.location.data.attributes

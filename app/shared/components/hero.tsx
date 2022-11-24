@@ -24,7 +24,7 @@ export default function Hero({
           : ""
       }
     >
-      <span className="absolute right-8 bottom-8 w-[8ch] text-right text-xl font-bold leading-5 text-heroText sm:w-[14ch] sm:text-4xl xl:text-5xl">
+      <span className="absolute right-8 bottom-8 w-[8ch] whitespace-pre-line text-right text-xl font-bold leading-5 text-heroText sm:w-[14ch] sm:text-4xl xl:text-5xl">
         {text}
       </span>
     </div>

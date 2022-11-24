@@ -67,7 +67,7 @@ export default function LawsRoute() {
   return (
     <div className="flex flex-col">
       <Hero
-        text={`${lawsSectionName}: ${law.attributes.LawName}`}
+        text={`${lawsSectionName}:\n${law.attributes.LawName}`}
         page="laws"
       />
       <div

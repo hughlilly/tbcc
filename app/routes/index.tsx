@@ -119,7 +119,7 @@ export default function Index() {
                 // See https://stackoverflow.com/a/70805360/10267529
                 style={{
                   backgroundImage: `url(${
-                    process.env.NODE_ENV === "development"
+                    section.image.data.attributes.formats.large
                       ? section.image.data.attributes.formats.large.url
                       : section.image.data.attributes.url
                   })`,

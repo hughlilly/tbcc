@@ -66,7 +66,7 @@ export default function TrainingRoute() {
   return (
     <div className="flex flex-col">
       <Hero
-        text={`${trainingSectionName}: ${shot.attributes.ShotName}`}
+        text={`${trainingSectionName}:\n${shot.attributes.ShotName}`}
         page="training"
       />
       <div
