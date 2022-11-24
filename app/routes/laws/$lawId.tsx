@@ -89,9 +89,9 @@ export default function LawsRoute() {
           aria-label={`${law.attributes.Photo.data.attributes.alternativeText}`}
           className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
         />
-        <div className="flex flex-col justify-between sm:w-1/2 sm:p-10">
+        <div className="flex flex-col justify-between p-5 sm:w-1/2 sm:p-10">
           <div className="flex flex-col gap-y-5">
-            <h1 className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0">
+            <h1 className="pt-5 text-center text-2xl font-bold sm:gap-y-0">
               {law.attributes.LawName}
             </h1>
             <p>{law.attributes.Description}</p>
