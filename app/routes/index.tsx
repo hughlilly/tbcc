@@ -90,7 +90,7 @@ export default function Index() {
       <Hero page="home" text={siteTitle} />
       <div
         id="homepage-sections"
-        className="flex flex-col gap-y-12 py-10 sm:gap-y-0 sm:py-0"
+        className="flex flex-col gap-y-12 divide-y divide-solid p-5 pb-20 sm:gap-y-0 sm:divide-none sm:p-0"
       >
         {sections.map((section: any, index: number) => {
           // Determine if current section is an even or odd one
@@ -102,12 +102,12 @@ export default function Index() {
               // If an even section, put img container first on sm+ viewports; if odd, put last
               className={`
               ${even ? "sm:flex-row" : "sm:flex-row-reverse"} 
-              flex h-auto flex-col-reverse  
+              flex h-auto flex-col-reverse pt-12 sm:pt-0
               `}
             >
               <Link
                 to={section.path}
-                className="flex flex-col gap-y-2 px-10 sm:w-1/2 sm:gap-y-5 sm:self-center sm:py-5 lg:py-24"
+                className="flex flex-col gap-y-2 px-5 pt-5 sm:w-1/2 sm:gap-y-5 sm:self-center sm:px-10 sm:py-5 lg:py-24"
               >
                 <h1 className="text-center text-xl font-bold sm:items-center sm:text-left sm:text-2xl">
                   {section.sectionName}
@@ -116,8 +116,9 @@ export default function Index() {
                   {section.sectionText}
                 </p>
               </Link>
-              <div
-                // See https://stackoverflow.com/a/70805360/10267529
+              <Link
+                to={section.path}
+                className="mx-auto block h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
                 style={{
                   backgroundImage: `url(${
                     section.image.data.attributes.formats.large
@@ -128,8 +129,9 @@ export default function Index() {
                 role="img"
                 // See https://www.davidmacd.com/blog/alternate-text-for-css-background-images.html
                 aria-label={`${section.image.data.attributes.alternativeText}`}
-                className="mx-auto h-44 w-44 rounded-full bg-cover bg-center bg-no-repeat sm:h-[55vh] sm:min-w-[50%] sm:rounded-none lg:min-w-[50%]"
-              />
+              >
+                {" "}
+              </Link>
             </article>
           );
         })}
