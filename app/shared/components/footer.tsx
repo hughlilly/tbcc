@@ -21,10 +21,10 @@ export default function Footer() {
             className="self-center sm:hidden"
           >
             <img
-              src={"/badminton.png"}
-              height={"40px"}
-              width={"40px"}
-              alt={"Badminton icon"}
+              src="/badminton.png"
+              height="40px"
+              width="40px"
+              alt="Badminton icon"
               className=""
             />
           </div>
@@ -68,10 +68,10 @@ export default function Footer() {
           className="hidden self-end sm:block"
         >
           <img
-            src={"/badminton.png"}
-            height={"40px"}
-            width={"40px"}
-            alt={"Badminton icon"}
+            src="/badminton.png"
+            height="40px"
+            width="40px"
+            alt="Badminton icon"
           />
         </div>
       </nav>
