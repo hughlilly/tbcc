@@ -32,7 +32,7 @@ export default function Footer() {
 
         <div
           id="navlinks"
-          className="flex justify-between gap-x-10 sm:self-end"
+          className="flex justify-start gap-x-6 sm:justify-between sm:gap-x-10 sm:self-end"
         >
           <div
             id="footer-navlinks-main"
