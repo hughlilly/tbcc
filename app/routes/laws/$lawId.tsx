@@ -98,7 +98,7 @@ export default function LawsRoute() {
           </div>
           <NavLink
             to="../"
-            className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="pt-10 text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             ← Back to {lawsSectionName}
           </NavLink>
