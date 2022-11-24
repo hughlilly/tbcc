@@ -15,7 +15,7 @@ export async function loader() {
   checkEnvVars();
 
   const res = await fetch(
-    `${process.env.STRAPI_URL_BASE}/api/training-materials/?populate=*`,
+    `${process.env.STRAPI_URL_BASE}/api/training-materials/?populate=*&sort=ShotName`,
     {
       method: "GET",
       headers: {
