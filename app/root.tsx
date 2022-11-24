@@ -11,9 +11,9 @@ import {
 } from "@remix-run/react";
 import { useEffect } from "react";
 
-import styles from "./styles/tailwind.css";
-import Header from "./shared/components/header";
-import Footer from "./shared/components/footer";
+import styles from "~/styles/tailwind.css";
+import Header from "~/shared/components/header";
+import Footer from "~/shared/components/footer";
 
 export const siteTitle = "Telugu Badminton Club of Canterbury";
 

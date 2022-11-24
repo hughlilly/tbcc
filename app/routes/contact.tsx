@@ -1,4 +1,4 @@
-import ContactForm from "./../../contact-form";
+import ContactForm from "~/shared/components/contact-form";
 import { siteTitle } from "~/root";
 
 export function meta() {
