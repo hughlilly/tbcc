@@ -48,7 +48,7 @@ export default function AboutRoute() {
       <Hero text={aboutPageTitle} page="about" />
       <div
         id="about-info"
-        className="flex min-h-screen flex-col gap-y-10 p-5 pb-14 sm:py-20 sm:px-32"
+        className="flex min-h-screen flex-col gap-y-14 p-5 pb-14 sm:py-20 sm:px-32"
       >
         <h1
           className="pt-8 text-center text-2xl font-bold sm:gap-y-0 sm:py-0"
@@ -64,7 +64,7 @@ export default function AboutRoute() {
         </p>
         <Link
           to="faq"
-          className="text-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4 sm:py-5"
+          className="self-center font-bold text-purple hover:underline hover:decoration-2 hover:underline-offset-4"
         >
           Frequently Asked Questions
         </Link>
