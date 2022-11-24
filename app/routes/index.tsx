@@ -37,6 +37,7 @@ export async function loader() {
 
   for (const section of data.data.attributes.section) {
     if (
+      section.image.data.attributes.formats.thumbnail &&
       !section.image.data.attributes.formats.thumbnail.url.startsWith(
         "http"
       )
