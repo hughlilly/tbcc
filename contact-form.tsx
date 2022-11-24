@@ -1,4 +1,9 @@
+import type { ActionFunction } from "@remix-run/node";
 import { Form } from "@remix-run/react";
+
+export let action: ActionFunction = async ({ request }) => {
+  let formData = await request.formData();
+};
 
 export default function ContactForm() {
   return (
@@ -28,6 +33,7 @@ export default function ContactForm() {
               required
               className="block w-full appearance-none border border-gray-200 py-3 px-4"
               id="firstname"
+              name="firstname"
               type="text"
               placeholder="First name" // See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
               // and https://www.w3.org/TR/WCAG21/#input-purposes
@@ -43,6 +49,7 @@ export default function ContactForm() {
               required
               className="block w-full appearance-none border border-gray-200 py-3 px-4"
               id="lastname"
+              name="lastname"
               type="text"
               placeholder="Last name"
               autoComplete="family-name"
@@ -55,6 +62,7 @@ export default function ContactForm() {
             <input
               className="block w-full appearance-none border border-gray-200 py-3 px-4"
               id="phoneNumber"
+              name="phoneNumber"
               type="tel"
               placeholder="Phone number"
             />
@@ -66,6 +74,7 @@ export default function ContactForm() {
             <input
               className="block w-full appearance-none border border-gray-200 py-3 px-4"
               id="email"
+              name="email"
               type="email"
               placeholder="Email address"
             />
@@ -79,6 +88,7 @@ export default function ContactForm() {
               rows={8}
               className="block w-full appearance-none border border-gray-200 py-3 px-4"
               id="message"
+              name="message"
               placeholder="Message"
             />
           </div>
