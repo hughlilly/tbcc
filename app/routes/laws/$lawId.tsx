@@ -6,8 +6,8 @@ import { lawsSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {
-    // title: `${data.attributes.LawName} | ${lawsSectionName} | ${siteTitle}`,
-    title: `${lawsSectionName} | ${siteTitle}`,
+    title: `${data.attributes.LawName} | ${lawsSectionName} | ${siteTitle}`,
+    // title: `${lawsSectionName} | ${siteTitle}`,
   };
 }
 

@@ -8,8 +8,8 @@ import { tournamentsSectionName } from "./index";
 
 export function meta({ data }: any): { title: string } {
   return {
-    // title: `${data.attributes.title} | ${tournamentsSectionName} | ${siteTitle}`,
-    title: `${tournamentsSectionName} | ${siteTitle}`,
+    title: `${data.attributes.title} | ${tournamentsSectionName} | ${siteTitle}`,
+    // title: `${tournamentsSectionName} | ${siteTitle}`,
   };
 }
 
