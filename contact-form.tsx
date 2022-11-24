@@ -1,7 +1,9 @@
+import { Form } from "@remix-run/react";
+
 export default function ContactForm() {
   return (
     <div id="form-content" className="mx-auto px-4 pt-5 pb-10 text-sm">
-      <form
+      <Form
         method="post"
         action="/messages"
         autoComplete="on"
@@ -99,7 +101,7 @@ export default function ContactForm() {
           value="Submit"
           className="mx-auto bg-purple py-3 px-2 text-white hover:cursor-pointer"
         />
-      </form>
+      </Form>
     </div>
   );
 }
