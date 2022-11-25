@@ -282,11 +282,15 @@ function SuccessMessage({ submittedData }: any) {
         <div id="submittedData" className="flex flex-col gap-y-2">
           <div className="">
             <span className="font-bold">First name</span>:{" "}
-            {submittedData.firstname}
+            {submittedData.firstName
+              ? submittedData.firstName
+              : submittedData.lastname}
           </div>
           <div className="">
             <span className="font-bold">Last name</span>:{" "}
-            {submittedData.lastname}
+            {submittedData.lastName
+              ? submittedData.lastName
+              : submittedData.lastname}
           </div>
           <div className="">
             <span className="font-bold">Email address</span>:{" "}
