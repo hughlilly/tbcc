@@ -10,7 +10,7 @@ export function meta() {
 }
 
 export let action: ActionFunction = async ({ request }) => {
-  let formData = await request.formData();
+  const formData = await request.formData();
 
   const submittedData = {
     firstName: formData.get("firstname"),
@@ -41,8 +41,11 @@ export let action: ActionFunction = async ({ request }) => {
     // Handle HTTP response code < 200 or >= 300
     checkStatus(res);
 
-    return res.json();
+    const data = await res.json();
+    return data;
   }
+
+  console.log("Data in prod", submittedData);
   return submittedData;
 };
 
@@ -69,7 +72,7 @@ function ContactForm() {
     ? "error"
     : "idle";
 
-  const submittedData = actionData?.data.attributes;
+  const submittedData = actionData?.data?.attributes;
   return (
     <div
       id="form-content"
