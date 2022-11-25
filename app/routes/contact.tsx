@@ -9,23 +9,56 @@ export function meta() {
   };
 }
 
-export let action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
+export const action: ActionFunction = async ({ request }) => {
+  let formData = await request.formData();
 
-  const submittedData = {
-    firstName: formData.get("firstname"),
-    lastName: formData.get("lastname"),
-    email: formData.get("email"),
-    phoneNumber: formData.get("phoneNumber"),
-    message: formData.get("message"),
-    subscriber: formData.get("newsletter") ? true : false,
+  // Validate email address field
+  const validateEmail = (email: any) => {
+    if (!email) {
+      return "Please fill out this field";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return "Please enter a valid email address";
+    }
   };
 
+  // Validate first and last names
+  const validateFirstName = (firstname: any) => {
+    if (!firstname) return "Please enter a first name";
+  };
+  const validateLastName = (lastname: any) => {
+    if (!lastname) return "Please enter a last name";
+  };
+
+  const validation = {
+    firstname: validateFirstName(formData.get("firstname")),
+    lastname: validateLastName(formData.get("lastname")),
+    email: validateEmail(formData.get("email")),
+  };
+
+  // If any data is invalid, return such
+  if (Object.values(validation).some(Boolean)) return { validation };
+
+  // Else, continue to making an API call, or not, depending on environment
+
   // Don't make an API call in production — messages is not exposed via the API key
-  if (process.env.NODE_ENV === "production") return submittedData;
+  if (process.env.NODE_ENV === "production") return { formData };
   if (process.env.NODE_ENV === "development") {
     checkEnvVars();
 
+    // Strapi needs firstName and lastName in camel case
+    // Otherwise would have just sent `Object.fromEntries(await request.formData())`
+    // see https://blog.logrocket.com/how-to-validate-forms-remix/
+
+    const dataForStrapi = {
+      firstName: formData.get("firstname"),
+      lastName: formData.get("lastname"),
+      email: formData.get("email"),
+      phoneNumber: formData.get("phoneNumber"),
+      message: formData.get("message"),
+      subscriber: formData.get("newsletter") ? true : false,
+    };
+
+    // Make a POST call to the /messages endpoint, and send the restructured data.
     const res = await fetch(
       `${process.env.STRAPI_URL_BASE}/api/messages`,
       {
@@ -35,7 +68,7 @@ export let action: ActionFunction = async ({ request }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          data: submittedData,
+          data: dataForStrapi,
         }),
       }
     );
@@ -43,8 +76,9 @@ export let action: ActionFunction = async ({ request }) => {
     // Handle HTTP response code < 200 or >= 300
     checkStatus(res);
 
-    const data = await res.json();
-    return data;
+    // Return Strapi's response
+    const strapiResponse = await res.json();
+    return strapiResponse;
   }
 };
 
@@ -81,7 +115,7 @@ function ContactForm() {
       className="flex px-4 pt-5 pb-10 text-sm sm:mx-auto"
     >
       {state !== "success" ? (
-        <ContactFormForm />
+        <ContactFormForm actionData={actionData} />
       ) : (
         <SuccessMessage submittedData={submittedData} />
       )}
@@ -89,7 +123,7 @@ function ContactForm() {
   );
 }
 
-function ContactFormForm() {
+function ContactFormForm({ actionData }: any) {
   const transition = useTransition();
 
   return (
@@ -117,23 +151,29 @@ function ContactFormForm() {
             First name (required)
           </label>
           <input
-            required
             className="block w-full appearance-none border border-gray-200 py-3 px-4"
             id="firstname"
             name="firstname"
             type="text"
-            placeholder="First name" // See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
+            placeholder="First name"
+            // See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values
             // and https://www.w3.org/TR/WCAG21/#input-purposes
             autoComplete="given-name"
           />
+          {actionData?.validation?.firstname ? (
+            <p className="pt-2 pl-2 text-xs italic text-red-500">
+              {actionData.validation.firstname}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
-        {/* <p className="text-xs italic text-red-500">Please fill out this field.</p> */}
+
         <div id="lastname-field">
           <label htmlFor="lastname" className="mb-1 block">
             Last name (required)
           </label>
           <input
-            required
             className="block w-full appearance-none border border-gray-200 py-3 px-4"
             id="lastname"
             name="lastname"
@@ -141,6 +181,13 @@ function ContactFormForm() {
             placeholder="Last name"
             autoComplete="family-name"
           />
+          {actionData?.validation?.lastname ? (
+            <p className="pt-2 pl-2 text-xs italic text-red-500">
+              {actionData.validation.lastname}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
         <div id="phone-number-field">
           <label htmlFor="phoneNumber" className="mb-1 block">
@@ -156,20 +203,28 @@ function ContactFormForm() {
         </div>
         <div id="email-field">
           <label htmlFor="email" className="mb-1 block">
-            Email address
+            Email address (required)
           </label>
           <input
-            required
             className="block w-full appearance-none border border-gray-200 py-3 px-4"
             id="email"
             name="email"
             type="email"
+            required
             placeholder="Email address"
           />
+          {actionData?.validation?.email ? (
+            <p className="pt-2 pl-2 text-xs italic text-red-500">
+              {actionData.validation.email}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
+        {/* This textarea input field uses the browser's native `required` attribute — this field is not validated via JS in the loader */}
         <div id="message-field">
           <label htmlFor="message" className="mb-1 block">
-            Message
+            Message (required)
           </label>
           <textarea
             required
@@ -227,11 +282,15 @@ function SuccessMessage({ submittedData }: any) {
         <div id="submittedData" className="flex flex-col gap-y-2">
           <div className="">
             <span className="font-bold">First name</span>:{" "}
-            {submittedData.firstName}
+            {submittedData.firstName
+              ? submittedData.firstName
+              : submittedData.lastname}
           </div>
           <div className="">
             <span className="font-bold">Last name</span>:{" "}
-            {submittedData.lastName}
+            {submittedData.lastName
+              ? submittedData.lastName
+              : submittedData.lastname}
           </div>
           <div className="">
             <span className="font-bold">Email address</span>:{" "}
