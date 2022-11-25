@@ -245,7 +245,7 @@ function SuccessMessage({ submittedData }: any) {
           ) : (
             ""
           )}
-          <div className="line-clamp-6 lg:max-w-[35vw]">
+          <div className="line-clamp-6 md:max-w-[35vw]">
             <span className="font-bold">Message</span>:{" "}
             <span className="whitespace-pre-line">
               {submittedData.message}
