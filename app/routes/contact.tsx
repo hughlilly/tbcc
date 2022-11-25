@@ -65,11 +65,12 @@ export default function ContactRoute() {
 function ContactForm() {
   const actionData = useActionData();
 
-  const state: "idle" | "success" | "error" = actionData?.data
-    ? "success"
-    : actionData?.error
-    ? "error"
-    : "idle";
+  const state: "idle" | "success" | "error" =
+    actionData?.data || actionData?.message
+      ? "success"
+      : actionData?.error
+      ? "error"
+      : "idle";
 
   const submittedData = actionData?.data
     ? actionData?.data?.attributes
