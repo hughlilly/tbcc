@@ -41,7 +41,7 @@ export const action: ActionFunction = async ({ request }) => {
   // Else, continue to making an API call, or not, depending on environment
 
   // Don't make an API call in production — messages is not exposed via the API key
-  if (process.env.NODE_ENV === "production") return { formData };
+  if (process.env.NODE_ENV === "production") return formData;
   if (process.env.NODE_ENV === "development") {
     checkEnvVars();
 
@@ -100,7 +100,7 @@ function ContactForm() {
   const actionData = useActionData();
 
   // If there is a data key, it's from Strapi; if a message, it was the user's input
-  const state: "idle" | "success" | "error" =
+  const state: "success" | "error" | "idle" =
     actionData?.data || actionData?.message
       ? "success"
       : actionData?.validation
