@@ -21,6 +21,8 @@ export let action: ActionFunction = async ({ request }) => {
     subscriber: formData.get("newsletter") ? true : false,
   };
 
+  // Don't make an API call in production — messages is not exposed via the API key
+  if (process.env.NODE_ENV === "production") return submittedData;
   if (process.env.NODE_ENV === "development") {
     checkEnvVars();
 
@@ -44,9 +46,6 @@ export let action: ActionFunction = async ({ request }) => {
     const data = await res.json();
     return data;
   }
-
-  console.log("Data in prod", submittedData);
-  return submittedData;
 };
 
 export default function ContactRoute() {
@@ -72,7 +71,9 @@ function ContactForm() {
     ? "error"
     : "idle";
 
-  const submittedData = actionData?.data?.attributes;
+  const submittedData = actionData?.data
+    ? actionData?.data?.attributes
+    : actionData;
   return (
     <div
       id="form-content"
