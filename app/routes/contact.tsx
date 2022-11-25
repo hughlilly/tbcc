@@ -99,10 +99,11 @@ export default function ContactRoute() {
 function ContactForm() {
   const actionData = useActionData();
 
+  // If there is a data key, it's from Strapi; if a message, it was the user's input
   const state: "idle" | "success" | "error" =
     actionData?.data || actionData?.message
       ? "success"
-      : actionData?.error
+      : actionData?.validation
       ? "error"
       : "idle";
 
@@ -161,9 +162,9 @@ function ContactFormForm({ actionData }: any) {
             autoComplete="given-name"
           />
           {actionData?.validation?.firstname ? (
-            <p className="pt-2 pl-2 text-xs italic text-red-500">
+            <span className="pl-2 text-xs italic text-red-500">
               {actionData.validation.firstname}
-            </p>
+            </span>
           ) : (
             ""
           )}
@@ -182,7 +183,7 @@ function ContactFormForm({ actionData }: any) {
             autoComplete="family-name"
           />
           {actionData?.validation?.lastname ? (
-            <p className="pt-2 pl-2 text-xs italic text-red-500">
+            <p className="pt-1 pl-2 text-xs italic text-red-500">
               {actionData.validation.lastname}
             </p>
           ) : (
@@ -209,12 +210,17 @@ function ContactFormForm({ actionData }: any) {
             className="block w-full appearance-none border border-gray-200 py-3 px-4"
             id="email"
             name="email"
+            // By making this field of type 'email', native browser validation kicks in
+            // If the user enters nothing, the string from the JS validation in the loader is displayed
+            // If the user enters "B", the native browser validation kicks in and warns the user with a popover
+            // If the user enters "B@", the same happens
+            // If the user enters "B@A", the string is valid as far as most native browser validation algorithms are concerned,
+            // and then the JS validation from the loader takes over, complaining of invalid entry.
             type="email"
-            required
             placeholder="Email address"
           />
           {actionData?.validation?.email ? (
-            <p className="pt-2 pl-2 text-xs italic text-red-500">
+            <p className="pt-1 pl-2 text-xs italic text-red-500">
               {actionData.validation.email}
             </p>
           ) : (
