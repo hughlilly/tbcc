@@ -33,7 +33,7 @@ cp .env.example .env
 
 Open `.env` and paste the Strapi API token created [during the setup of the backend repository](https://github.com/hughlilly/tbcc-db#frontend-remix-site) as the value for `STRAPI_API_TOKEN` (i.e., after the equals sign). Save the file.
 
-#### Install dependencies, seed data, and start server
+#### Install dependencies and start server
 
 Run this series of chained commands:
 
