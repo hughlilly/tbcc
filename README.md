@@ -1,53 +1,56 @@
-# Welcome to Remix!
+# IT5090 Capstone Project: Telugu Badminton Club of Canterbury
 
-- [Remix Docs](https://remix.run/docs)
+## Introduction
 
-## Development
+This repository contains the frontend website for the IT5090 Capstone Project (Q4 2022). The author is Hugh Lilly (ID 20220344).
 
-From your terminal:
+## Companion backend repository
 
-```sh
+This site displays the information contained in the CMS in the repository [hughlilly/tbcc-db](https://github.com/hughlilly/tbcc-db). Set up and install dependencies for that repository first before moving to this one.
+
+## Source code
+
+### Architecture
+
+This site uses the SSR React framework [Remix](https://github.com/remix-run/remix).
+
+## Running locally
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) (>=14)
+- npm (>6)
+
+### Installation
+
+#### Environment variables
+
+First, create a file to hold your environment variables by duplicating the included sample file:
+
+```bash
+cp .env.example .env
+```
+
+Paste the Strapi API token as the value for `STRAPI_API_TOKEN`.
+
+#### Install dependencies, seed data, and start server
+
+Run this command:
+
+```bash
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+This should install all dependencies, and start the Remix server. Open the `localhost` link to view the site.
 
-## Deployment
+## Deployed version
 
-First, build your app for production:
+This site is deployed to Render at <http://tbcc.onrender.com>. I am using the free tier of Render so initial loads may involve cause the instance to spin up. If the site does not load initally, try again a few minutes later, or contact me.
 
-```sh
-npm run build
-```
+## Images
 
-Then run the app in production mode:
+All images are [sourced from Unsplash](https://unsplash.com/collections/OzIboe0O1MQ/it5090).
 
-```sh
-npm start
-```
+## Contact
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+Contact the author, Hugh Lilly (ID 20220344), by email (20220344@mywhitecliffe.com) if you have any questions.
