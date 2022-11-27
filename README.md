@@ -45,7 +45,7 @@ This should install all dependencies, and start the Remix server. Open the `loca
 
 ## Deployed version
 
-This site is deployed to Render at <http://tbcc.onrender.com>. I am using the free tier of Render so initial loads may involve cause the instance to spin up. If the site does not load initally, try again a few minutes later, or contact me.
+This site is deployed to Render at <http://tbcc.onrender.com>. I am using the free tier of Render so initial loads may cause the instance to spin up. If the site does not load initally, try again a few minutes later, or contact me.
 
 ## Images
 
