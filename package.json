@@ -1,6 +1,8 @@
 {
   "private": true,
   "sideEffects": false,
+  "version": "1.0.0",
+  "description": "IT5090 Capstone Project: Telugu Badminton Club of Canterbury",
   "scripts": {
     "build": "npm run build:css && remix build",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
