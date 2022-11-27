@@ -31,14 +31,14 @@ First, create a file to hold your environment variables by duplicating the inclu
 cp .env.example .env
 ```
 
-Paste the Strapi API token created [during the setup of the backend repository](https://github.com/hughlilly/tbcc-db#frontend-remix-site) as the value for `STRAPI_API_TOKEN`.
+Open `.env` and paste the Strapi API token created [during the setup of the backend repository](https://github.com/hughlilly/tbcc-db#frontend-remix-site) as the value for `STRAPI_API_TOKEN` (i.e., after the equals sign). Save the file.
 
 #### Install dependencies, seed data, and start server
 
-Run this command:
+Run this series of chained commands:
 
 ```bash
-npm run dev
+npm i && npm run dev
 ```
 
 This should install all dependencies, and start the Remix server. Open the `localhost` link to view the site.
