@@ -40,25 +40,25 @@ export const action: ActionFunction = async ({ request }) => {
 
   // Else, continue to making an API call, or not, depending on environment
 
-  // Don't make an API call in production — messages is not exposed via the API key
-  if (process.env.NODE_ENV === "production") return formData;
+  // Strapi needs firstName and lastName in camel case
+  // Otherwise would have just sent `Object.fromEntries(await request.formData())`
+  // see https://blog.logrocket.com/how-to-validate-forms-remix/
+
+  const dataForStrapi = {
+    firstName: formData.get("firstname"),
+    lastName: formData.get("lastname"),
+    email: formData.get("email"),
+    phoneNumber: formData.get("phoneNumber"),
+    message: formData.get("message"),
+    subscriber: formData.get("newsletter") ? true : false,
+  };
+
+  // Don't make an API call in production — the `messages` endpoint
+  //  is not exposed via the API key for security reasons — we'd need a Captcha to verify non-bot status
   if (process.env.NODE_ENV === "development") {
     checkEnvVars();
 
-    // Strapi needs firstName and lastName in camel case
-    // Otherwise would have just sent `Object.fromEntries(await request.formData())`
-    // see https://blog.logrocket.com/how-to-validate-forms-remix/
-
-    const dataForStrapi = {
-      firstName: formData.get("firstname"),
-      lastName: formData.get("lastname"),
-      email: formData.get("email"),
-      phoneNumber: formData.get("phoneNumber"),
-      message: formData.get("message"),
-      subscriber: formData.get("newsletter") ? true : false,
-    };
-
-    // Make a POST call to the /messages endpoint, and send the restructured data.
+    // POST to the `/messages` endpoint, and send the restructured data.
     const res = await fetch(
       `${process.env.STRAPI_URL_BASE}/api/messages`,
       {
@@ -80,6 +80,8 @@ export const action: ActionFunction = async ({ request }) => {
     const strapiResponse = await res.json();
     return strapiResponse;
   }
+
+  return dataForStrapi;
 };
 
 export default function ContactRoute() {
@@ -288,15 +290,11 @@ function SuccessMessage({ submittedData }: any) {
         <div id="submittedData" className="flex flex-col gap-y-2">
           <div className="">
             <span className="font-bold">First name</span>:{" "}
-            {submittedData.firstName
-              ? submittedData.firstName
-              : submittedData.lastname}
+            {submittedData.firstName}
           </div>
           <div className="">
             <span className="font-bold">Last name</span>:{" "}
-            {submittedData.lastName
-              ? submittedData.lastName
-              : submittedData.lastname}
+            {submittedData.lastName}
           </div>
           <div className="">
             <span className="font-bold">Email address</span>:{" "}
